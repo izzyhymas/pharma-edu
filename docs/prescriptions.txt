@@ -1,0 +1,11 @@
+Prescriptions Table
+
+Brand Name string
+
+Generic Name string
+
+Available Dosages list[string]
+
+Restricted Checkbox bool
+
+Sig Code/Instructions string

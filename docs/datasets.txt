@@ -1,0 +1,7 @@
+Open APIs and Datasets
+
+- OpenFDA - Drugs, Medical Devices, Historical Documents, Food
+
+- RxNorm API - Provides normalized names for clinical drugs, acting as an "interlingua" for exchange of drug information.
+
+- 
