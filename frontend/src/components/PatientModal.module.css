@@ -1,0 +1,40 @@
+.PatientModalContent {
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: none;
+}
+
+.PatientModalHeader {
+  font-weight: 800;
+}
+
+.PatientModalBody label {
+  display: flex;
+  flex-direction: column;
+}
+
+.PatientModalBody p {
+  font-weight: 600;
+}
+
+.PatientModalBody input {
+  padding: 0.5rem;
+  padding-bottom: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.PatientSelectButton {
+  background-color: #4d79a9;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.PatientSelectButton:hover {
+  background-color: #416892;
+}

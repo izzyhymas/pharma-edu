@@ -1,0 +1,202 @@
+.rxContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  padding: 20vh 1rem;
+}
+
+.rxTitle h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  text-align: left;
+}
+
+.rxTitle hr,
+.rxSection hr,
+.rxContent hr {
+  border-top: 3px solid #636466;
+  width: 100%;
+  margin: 0;
+}
+
+.rxContent {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  align-items: stretch;
+}
+
+.rxInfo,
+.label {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rxSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.rxSection h3 {
+  font-weight: 600;
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.rxSection label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 70%;
+  padding-right: 1rem;
+  justify-content: center;
+}
+
+.rxSection p {
+  margin: 0;
+  font-weight: 600;
+  font-size: large;
+  width: 30%;
+  text-align: right;
+  display: flex;
+  align-items: center;
+}
+
+.rxSection input {
+  width: 100%;
+  background-color: #d1d3d4;
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dateIcon {
+  position: relative;
+  width: 100%;
+}
+
+.dateIcon input[type="date"] {
+  width: 100%;
+  padding-right: 1rem;
+  background-color: #d1d3d4;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dateIcon input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  z-index: 2;
+}
+
+.dateIcon::before {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  background-color: #4d79a9;
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+.rxSection textarea {
+  width: 100%;
+  background-color: #d1d3d4;
+  border: none;
+  border-radius: 10px;
+  color: #000000;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.inputWithIcon {
+  position: relative;
+  width: 100%;
+}
+
+.inputWithIcon input {
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.inputWithIcon img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
+  background-color: #4d79a9;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.initials {
+  align-self: center;
+  margin-bottom: 2rem;
+}
+
+.initials input {
+  width: 5rem;
+  background-color: #d1d3d4;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.rxSeparator {
+  width: 3px;
+  align-self: stretch;
+  background-color: #d1d3d4;
+  margin: 0;
+}
+
+.rxContent hr {
+  border: 0;
+  border-top: 3px solid #636466;
+  margin: 0;
+  width: 100%;
+}
+
+.rxButtonContainer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.label h3 {
+  padding-top: 0.5rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.rxButtonContainer button {
+  background-color: #4d79a9;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #416892;
+}
