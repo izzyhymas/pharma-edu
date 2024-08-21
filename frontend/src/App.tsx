@@ -6,6 +6,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import PatientSearch from "./pages/Patient/PatientSearch";
 import PatientProfile from "./pages/Patient/PatientProfile";
+import Prescription from "./pages/Prescription";
+import AddPatient from "./pages/Patient/AddPatient";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -14,16 +16,17 @@ const App: React.FC = () => {
     <>
       <div>
         <Routes>
-          {/* {routes.map((route) => (
+          {routes.map((route) => (
             <Route
               key={route.name}
               path={route.path}
               element={<route.component />}
             />
-          ))} */}
-          <Route path="something" element={<PatientProfile />}>
-            <Route path="profile" element={<PatientSearch />} />
-          </Route>
+          ))}
+          <Route path="patient" element={<PatientProfile />} />
+          <Route path="patient/search" element={<PatientSearch />} />
+          <Route path="patient/prescription" element={<Prescription />} />
+          <Route path="patient/add" element={<AddPatient />} />
         </Routes>
       </div>
       {/* Renders Nav component based on current path */}

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./NewRx.module.css";
+
+import search from "../assets/magnifying-glass.svg";
+
 import PatientModal from "../components/PatientModal";
 import DoctorModal from "../components/DoctorModal";
 import MedicationModal from "../components/MedicationModal";
-
-import magnifying from "../assets/magnifying-glass.svg";
 
 const NewRx: React.FC = () => {
   const [showPatientModal, setShowPatientModal] = useState(false);
@@ -21,29 +22,31 @@ const NewRx: React.FC = () => {
   const handleCloseMedicationModal = () => setShowMedicationModal(false);
 
   return (
-    <div className={styles.rxContainer}>
-      <div className={styles.rxTitle}>
+    <div className={styles.newRxPage}>
+      <div className={styles.rxPageTitle}>
         <h3>New Rx</h3>
         <hr />
       </div>
-
-      <div className={styles.rxContent}>
-        <div className={styles.rxInfo}>
-          <div className={styles.rxSection}>
-            <h3>Patient Name</h3>
-            <hr />
+      <div className={styles.rxContainer}>
+        <div className={styles.patientInfo}>
+          <h3>Patient</h3>
+          <hr />
+          <div className={styles.patientInfoFields}>
             <label>
               <p>Name:</p>
-              <div className={styles.inputWithIcon}>
+              <div className={styles.searchImg}>
                 <input type="text" />
                 <img
-                  src={magnifying}
-                  alt="magnifying-glass"
-                  className={styles.icon}
+                  src={search}
+                  alt="search-image"
                   onClick={handleShowPatientModal}
                 ></img>
               </div>
             </label>
+            <PatientModal
+              show={showPatientModal}
+              handleClose={handleClosePatientModal}
+            ></PatientModal>
             <label>
               <p>DOB:</p>
               <div className={styles.dateIcon}>
@@ -54,40 +57,28 @@ const NewRx: React.FC = () => {
               <p>Allergies:</p>
               <input type="text" />
             </label>
-            <div className={styles.rxButtonContainer}></div>
-            <PatientModal
-              show={showPatientModal}
-              handleClose={handleClosePatientModal}
-            ></PatientModal>
-          </div>
-          <div className={styles.rxSection}>
             <hr />
             <h3>Doctor Name</h3>
             <hr />
             <label>
               <p>Name:</p>
-              <div className={styles.inputWithIcon}>
+              <div className={styles.searchImg}>
                 <input type="text" />
                 <img
-                  src={magnifying}
-                  alt="magnifying-glass"
-                  className={styles.icon}
+                  src={search}
+                  alt="search-icon"
                   onClick={handleShowDoctorModal}
                 ></img>
               </div>
             </label>
+            <DoctorModal
+              show={showDoctorModal}
+              handleClose={handleCloseDoctorModal}
+            ></DoctorModal>
             <label>
               <p>DEA:</p>
               <input type="text" />
             </label>
-            <div className={styles.rxButtonContainer}>
-              <DoctorModal
-                show={showDoctorModal}
-                handleClose={handleCloseDoctorModal}
-              ></DoctorModal>
-            </div>
-          </div>
-          <div className={styles.rxSection}>
             <hr />
             <h3>Date of Rx</h3>
             <hr />
@@ -97,23 +88,24 @@ const NewRx: React.FC = () => {
                 <input type="date" />
               </div>
             </label>
-          </div>
-          <div className={styles.rxSection}>
             <hr />
             <h3>Medication</h3>
             <hr />
             <label>
               <p>Medication:</p>
-              <div className={styles.inputWithIcon}>
+              <div className={styles.searchImg}>
                 <input type="text" />
                 <img
-                  src={magnifying}
-                  alt="magnifying-glass"
-                  className={styles.logo}
+                  src={search}
+                  alt="search-icon"
                   onClick={handleShowMedicationModal}
                 ></img>
               </div>
             </label>
+            <MedicationModal
+              show={showMedicationModal}
+              handleClose={handleCloseMedicationModal}
+            ></MedicationModal>
             <label>
               <p>Quantity:</p>
               <input type="number" />
@@ -126,13 +118,6 @@ const NewRx: React.FC = () => {
               <p>Refills:</p>
               <input type="number" />
             </label>
-            <MedicationModal
-              show={showMedicationModal}
-              handleClose={handleCloseMedicationModal}
-            ></MedicationModal>
-            <div className={styles.rxButtonContainer}></div>
-          </div>
-          <div className={styles.rxSection}>
             <hr />
             <h3>Directions</h3>
             <hr />
@@ -142,20 +127,25 @@ const NewRx: React.FC = () => {
             </label>
             <hr></hr>
           </div>
-          <div className={styles.initials}>
-            <label>
-              <h4>Tech Initials</h4>
-              <input type="text" />
-            </label>
+          <div className={styles.techInitialsContainer}>
+            <div className={styles.techInitials}>
+              <label>
+                <h3>Tech Initials</h3>
+                <input type="text" />
+              </label>
+            </div>
           </div>
         </div>
 
-        <div className={styles.rxSeparator}></div>
+        <div className={styles.rxPageSep}></div>
 
-        <div className={styles.label}>
+        <div className={styles.printLabel}>
           <h3>Print Label</h3>
           <hr />
-          <div className={styles.rxButtonContainer}>
+          <div className={styles.imageContainer}>
+            <div className={styles.imageBox}></div>
+          </div>
+          <div className={styles.labelButton}>
             <button type="submit">Continue to Label</button>
           </div>
         </div>
