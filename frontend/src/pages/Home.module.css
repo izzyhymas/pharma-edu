@@ -1,0 +1,10 @@
+.dixieLogo {
+    padding-top: 15vh;
+    display: flex;
+    justify-content: center;
+}
+
+.dixieLogo img {
+    width: 1100px;
+    height: auto;
+}

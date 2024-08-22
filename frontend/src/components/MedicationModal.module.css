@@ -1,0 +1,41 @@
+.MedicationModalContent {
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  .MedicationModalHeader {
+    font-weight: 800;
+  }
+  
+  .MedicationModalBody label {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .MedicationModalBody p {
+    font-weight: 600;
+  }
+  
+  .MedicationModalBody input {
+    padding: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .MedicationSelectButton {
+    background-color: #4d79a9;
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .MedicationSelectButton:hover {
+    background-color: #416892;
+  }
+  
