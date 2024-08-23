@@ -48,17 +48,11 @@ const NewRx: React.FC = () => {
               handleClose={handleClosePatientModal}
             ></PatientModal>
             <label>
-              <p>DOB:</p>
-              <div className={styles.dateIcon}>
-                <input type="date" />
-              </div>
-            </label>
-            <label>
               <p>Allergies:</p>
-              <input type="text" />
+              <textarea className="newRxTextarea" />
             </label>
             <hr />
-            <h3>Doctor Name</h3>
+            <h3>Prescriber</h3>
             <hr />
             <label>
               <p>Name:</p>
@@ -75,24 +69,30 @@ const NewRx: React.FC = () => {
               show={showDoctorModal}
               handleClose={handleCloseDoctorModal}
             ></DoctorModal>
-            <label>
+            {/* <label>
               <p>DEA:</p>
               <input type="text" />
-            </label>
+            </label> */}
             <hr />
             <h3>Date of Rx</h3>
             <hr />
             <label>
-              <p>Date:</p>
+              <p>Rx Filled:</p>
+              <div className={styles.dateIcon}>
+                <input type="date" />
+              </div>
+            </label>
+            <label>
+              <p>Discard After:</p>
               <div className={styles.dateIcon}>
                 <input type="date" />
               </div>
             </label>
             <hr />
-            <h3>Medication</h3>
+            <h3>Medication Information</h3>
             <hr />
             <label>
-              <p>Medication:</p>
+              <p>Item:</p>
               <div className={styles.searchImg}>
                 <input type="text" />
                 <img
@@ -107,7 +107,7 @@ const NewRx: React.FC = () => {
               handleClose={handleCloseMedicationModal}
             ></MedicationModal>
             <label>
-              <p>Quantity:</p>
+              <p>Item Quantity:</p>
               <input type="number" />
             </label>
             <label>
@@ -118,21 +118,24 @@ const NewRx: React.FC = () => {
               <p>Refills:</p>
               <input type="number" />
             </label>
-            <hr />
+            {/* <hr />
             <h3>Directions</h3>
-            <hr />
+            <hr /> */}
             <label>
               <p>Directions:</p>
-              <textarea />
+              <textarea className="newRxTextarea"/>
             </label>
             <hr></hr>
           </div>
           <div className={styles.techInitialsContainer}>
             <div className={styles.techInitials}>
+              <h3>Verification</h3>
+              <hr />
               <label>
-                <h3>Tech Initials</h3>
+                <p>Tech Initials: </p>
                 <input type="text" />
               </label>
+              <hr></hr>
             </div>
           </div>
         </div>
@@ -140,13 +143,19 @@ const NewRx: React.FC = () => {
         <div className={styles.rxPageSep}></div>
 
         <div className={styles.printLabel}>
-          <h3>Print Label</h3>
+          <h3>Patient Information</h3>
           <hr />
-          <div className={styles.imageContainer}>
-            <div className={styles.imageBox}></div>
-          </div>
+          <div className={styles.displayPatientInfo}></div>
+          <hr />
+          <h3>Prescription</h3>
+          <hr />
+          
+          <div className={styles.imageBox}></div>
+          
           <div className={styles.labelButton}>
-            <button type="submit">Continue to Label</button>
+            <button type="submit">Save</button>
+            <button type="submit">Scan Rx</button>
+            <button type="submit">Print Label</button>
           </div>
         </div>
       </div>

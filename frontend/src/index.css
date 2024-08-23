@@ -13,3 +13,20 @@
   color: #000000;
   background-color: #FFFFFF;
 }
+
+/* This input affects all inputs throughout the frontend. 
+I only added basic styling that will be the same throughout the project. */
+input {
+  background-color: #d1d3d4;
+  color: #000000;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+hr {
+  margin: 0;
+  border-top: 3px solid #636466;
+}
