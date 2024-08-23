@@ -42,10 +42,6 @@
   margin: 0;
 }
 
-.patientSearchContent hr {
-  border-top: 3px solid #636466;
-}
-
 .patientSearchFields {
   display: flex;
   flex-direction: column;
@@ -110,7 +106,8 @@
 
 .patientSearchSep {
   width: 3px;
-  height: 68%;
+  min-height: 67%;
+  height: auto;
   background-color: #b3b4b5;
   margin: 0;
   position: absolute;

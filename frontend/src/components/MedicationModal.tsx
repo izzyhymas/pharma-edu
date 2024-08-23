@@ -12,12 +12,16 @@ const MedicationModal: React.FC<ModalProps> = ({ show, handleClose }) => {
   return (
     <Modal show={show} onHide={handleClose} className={styles.MedicationModalContent}>
       <Modal.Header closeButton className={styles.MedicationModalHeader}>
-        <Modal.Title>Medication Search</Modal.Title>
+        <Modal.Title>Search</Modal.Title>
       </Modal.Header>
       <Modal.Body className={styles.MedicationModalBody}>
         <label>
-          <p>Medication:</p>
+          <p>Item:</p>
           <input type="text"></input>
+        </label>
+        <label>
+          <p>Rx Number:</p>
+          <input type="number"></input>
         </label>
       </Modal.Body>
       <Modal.Footer className={styles.MedicationModalFooter}>

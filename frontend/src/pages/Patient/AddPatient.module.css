@@ -9,11 +9,6 @@
   margin: 0;
 }
 
-hr {
-  margin: 0;
-  border-top: 3px solid #636466;
-}
-
 .addPatientContainer {
   display: flex;
   flex-direction: row;
