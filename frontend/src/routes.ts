@@ -1,10 +1,10 @@
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import MedicationSearch from "./pages/Medication/MedicationSearch";
 import NewRX from "./pages/NewRx";
 import PatientSearch from "./pages/Patient/PatientSearch";
 import PrescriberSearch from "./pages/Prescriber/PrescriberSearch";
 import Queue from "./pages/Queue";
-import RXItem from "./pages/RxItem";
 
 interface PharmacyRoutes {
   name: string;
@@ -39,9 +39,9 @@ const routes: PharmacyRoutes[] = [
     component: PrescriberSearch,
   },
   {
-    name: "RX Item",
-    path: "/rx-item",
-    component: RXItem,
+    name: "Medication",
+    path: "/medication/search",
+    component: MedicationSearch,
   },
   {
     name: "Login",

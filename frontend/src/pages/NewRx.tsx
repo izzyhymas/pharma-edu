@@ -69,10 +69,6 @@ const NewRx: React.FC = () => {
               show={showDoctorModal}
               handleClose={handleCloseDoctorModal}
             ></DoctorModal>
-            {/* <label>
-              <p>DEA:</p>
-              <input type="text" />
-            </label> */}
             <hr />
             <h3>Date of Rx</h3>
             <hr />
@@ -118,12 +114,9 @@ const NewRx: React.FC = () => {
               <p>Refills:</p>
               <input type="number" />
             </label>
-            {/* <hr />
-            <h3>Directions</h3>
-            <hr /> */}
             <label>
               <p>Directions:</p>
-              <textarea className="newRxTextarea"/>
+              <textarea className="newRxTextarea" />
             </label>
             <hr></hr>
           </div>
@@ -149,9 +142,9 @@ const NewRx: React.FC = () => {
           <hr />
           <h3>Prescription</h3>
           <hr />
-          
+
           <div className={styles.imageBox}></div>
-          
+
           <div className={styles.labelButton}>
             <button type="submit">Save</button>
             <button type="submit">Scan Rx</button>

@@ -27,7 +27,6 @@ hr {
   position: relative;
 }
 
-
 .patientInfo {
   display: flex;
   flex-direction: column;
@@ -62,6 +61,11 @@ hr {
   font-size: large;
 }
 
+.printLabel hr {
+  margin: 0;
+  width: 48.8vw;
+}
+
 .patientInfoFields input {
   width: 50%;
 }
@@ -92,7 +96,7 @@ hr {
   top: 20%;
   width: 25px;
   height: 25px;
-  background-color: #2E3F59;  /* Previous Color #4d79a9 */
+  background-color: #2e3f59; /* Previous Color #4d79a9 */
   padding: 5px;
   border-radius: 5px;
 }
@@ -121,7 +125,7 @@ hr {
   transform: translateY(-50%);
   width: 25px;
   height: 25px;
-  background-color: #2E3F59;  /* Previous Color #4d79a9 */
+  background-color: #2e3f59; /* Previous Color #4d79a9 */
   border-radius: 5px;
   pointer-events: none;
 }
@@ -212,7 +216,7 @@ but height is set to auto to make it responsive to the image that will be appear
 }
 
 .labelButton button {
-  background-color: #2E3F59;  /* Previous Color #4d79a9 */
+  background-color: #2e3f59; /* Previous Color #4d79a9 */
   border: none;
   padding: 0.5rem;
   margin: 0.5rem;
