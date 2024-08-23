@@ -1,8 +1,8 @@
-import Doctor from "./pages/Doctor";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NewRX from "./pages/NewRx";
 import PatientSearch from "./pages/Patient/PatientSearch";
+import PrescriberSearch from "./pages/Prescriber/PrescriberSearch";
 import Queue from "./pages/Queue";
 import RXItem from "./pages/RxItem";
 
@@ -34,9 +34,9 @@ const routes: PharmacyRoutes[] = [
     component: PatientSearch,
   },
   {
-    name: "Doctor",
-    path: "/doctors",
-    component: Doctor,
+    name: "Prescriber",
+    path: "/presriber/search",
+    component: PrescriberSearch,
   },
   {
     name: "RX Item",

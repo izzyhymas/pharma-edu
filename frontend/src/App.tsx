@@ -9,6 +9,10 @@ import PatientProfile from "./pages/Patient/PatientProfile";
 import Prescription from "./pages/Prescription";
 import AddPatient from "./pages/Patient/AddPatient";
 
+import PrescriberSearch from "./pages/Prescriber/PrescriberSearch";
+import PrescriberProfile from "./pages/Prescriber/PrescriberProfile";
+import AddPrescriber from "./pages/Prescriber/AddPrescriber";
+
 const App: React.FC = () => {
   const location = useLocation();
 
@@ -27,6 +31,9 @@ const App: React.FC = () => {
           <Route path="patient/search" element={<PatientSearch />} />
           <Route path="patient/prescription" element={<Prescription />} />
           <Route path="patient/add" element={<AddPatient />} />
+          <Route path="prescriber/search" element={<PrescriberSearch />} />
+          <Route path="prescriber" element={<PrescriberProfile />} />
+          <Route path="prescriber/add" element={<AddPrescriber />} />
         </Routes>
       </div>
       {/* Renders Nav component based on current path */}

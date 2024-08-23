@@ -1,0 +1,152 @@
+.prescriberPage {
+    padding: 20vh 1rem;
+  }
+  
+  .prescriberSearchTitle h3 {
+    display: flex;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+  
+  .prescriberSearch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+  }
+  
+  .prescriberSearchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    background-color: #d9d9d9;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+  
+  .prescriberSearchContent {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  
+  .prescriberSearchContent h3 {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: left;
+    margin: 0;
+  }
+  
+  .prescriberSearchFields {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+  }
+  
+  .prescriberSearchContent label {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+  
+  .prescriberSearchContainer p {
+    margin: 0;
+    font-weight: 600;
+    align-items: start;
+    width: 30%;
+    text-align: left;
+    font-size: large;
+  }
+  
+  .prescriberSearchFields input {
+    background-color: #ffffff;
+    color: #000000;
+    width: 50%;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem;
+  }
+  
+  .dateIcon {
+    position: relative;
+    width: 50%;
+  }
+  
+  .dateIcon input[type="date"] {
+    width: 100%;
+    padding-right: 30px;
+  }
+  
+  .dateIcon input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .dateIcon::before {
+    content: "";
+    position: absolute;
+    right: 9.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    background-color: #4d79a9;
+    border-radius: 5px;
+    pointer-events: none;
+  }
+  
+  .prescriberSearchSep {
+    width: 3px;
+    min-height: 67%;
+    height: auto;
+    background-color: #b3b4b5;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+  }
+  
+  .prescriberDisplay {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  }
+  
+  .prescriberBox {
+    width: 30vw;
+    height: 60vh;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    margin: 0;
+  }
+  
+  .prescriberSearchButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1rem;
+  }
+  
+  .prescriberSearchButton button {
+    background-color: #4d79a9;
+    border: none;
+    padding: 0.5rem;
+    width: 10vw;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .prescriberSearchButton button:hover {
+    background-color: #416892;
+  }
