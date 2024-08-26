@@ -11,8 +11,6 @@ const PatientSearch: React.FC = () => {
     firstName: "",
     lastName: "",
     dateOfBirth: "",
-    phoneNumber: "",
-    address: "",
   });
 
   // useEffect to fetch all patients data
@@ -34,7 +32,7 @@ const PatientSearch: React.FC = () => {
   // useEffect to filter patients whenever searchParams or patients change
   useEffect(() => {
     const filterPatients = () => {
-      const { firstName, lastName } = searchParams;
+      const { firstName, lastName, dateOfBirth } = searchParams;
       const filtered = patients.filter(
         (patient) =>
           (firstName
@@ -42,7 +40,8 @@ const PatientSearch: React.FC = () => {
             : true) &&
           (lastName
             ? patient.last_name.toLowerCase().includes(lastName.toLowerCase())
-            : true)
+            : true) &&
+          (dateOfBirth ? patient.date_of_birth === dateOfBirth : true)
       );
       setFilteredPatients(filtered); // Updates the filtered patients state
     };
@@ -92,16 +91,13 @@ const PatientSearch: React.FC = () => {
               <label>
                 <p>DOB:</p>
                 <div className={styles.dateIcon}>
-                  <input type="date"></input>
+                  <input
+                    type="date"
+                    name="dateOfBirth"
+                    value={searchParams.dateOfBirth}
+                    onChange={handleChange}
+                  ></input>
                 </div>
-              </label>
-              <label>
-                <p>Phone Number:</p>
-                <input type="tel"></input>
-              </label>
-              <label>
-                <p>Address:</p>
-                <input type="Address"></input>
               </label>
             </div>
             <div className={styles.patientSearchButton}>
