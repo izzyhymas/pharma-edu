@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./PatientSearch.module.css";
 
 const PatientSearch: React.FC = () => {
@@ -12,6 +13,8 @@ const PatientSearch: React.FC = () => {
     lastName: "",
     dateOfBirth: "",
   });
+
+  const navigate = useNavigate();
 
   // useEffect to fetch all patients data
   useEffect(() => {
@@ -58,6 +61,10 @@ const PatientSearch: React.FC = () => {
     }));
   };
 
+  const handleAddPatientClick = () => {
+    navigate("/patient/add");
+  }
+
   return (
     <div className={styles.patientPage}>
       <div className={styles.patientSearchTitle}>
@@ -101,7 +108,7 @@ const PatientSearch: React.FC = () => {
               </label>
             </div>
             <div className={styles.patientSearchButton}>
-              <button type="submit">Add Patient</button>
+              <button type="submit" onClick={handleAddPatientClick}>Add Patient</button>
             </div>
           </div>
 

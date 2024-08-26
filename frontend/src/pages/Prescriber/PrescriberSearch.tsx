@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./PrescriberSearch.module.css";
 
 const PrescriberSearch: React.FC = () => {
@@ -12,6 +13,8 @@ const PrescriberSearch: React.FC = () => {
     lastName: "",
     dea: "",
   });
+
+  const navigate = useNavigate()
 
   // useEffect to fetch all patients data
   useEffect(() => {
@@ -65,6 +68,10 @@ const PrescriberSearch: React.FC = () => {
     }));
   };
 
+  const handleAddPrescriberClick = () => {
+    navigate("/prescriber/add");
+  }
+
   return (
     <div className={styles.prescriberPage}>
       <div className={styles.prescriberSearchTitle}>
@@ -106,7 +113,7 @@ const PrescriberSearch: React.FC = () => {
               </label>
             </div>
             <div className={styles.prescriberSearchButton}>
-              <button type="submit">Add Prescriber</button>
+              <button type="submit" onClick={handleAddPrescriberClick}>Add Prescriber</button>
             </div>
           </div>
 

@@ -39,7 +39,6 @@ function AddPrescriber() {
               <input type="text"></input>
             </label>
             <div className={styles.GeneralButtonContainer}>
-              <button type="submit">Edit Information</button>
               <button type="submit">Save Information</button>
             </div>
           </div>
