@@ -61,9 +61,13 @@ const PatientSearch: React.FC = () => {
     }));
   };
 
+  const handlePatientClick = (id: string) => {
+    navigate(`/patient/profile/${id}`);
+  };
+
   const handleAddPatientClick = () => {
     navigate("/patient/add");
-  }
+  };
 
   return (
     <div className={styles.patientPage}>
@@ -108,7 +112,9 @@ const PatientSearch: React.FC = () => {
               </label>
             </div>
             <div className={styles.patientSearchButton}>
-              <button type="submit" onClick={handleAddPatientClick}>Add Patient</button>
+              <button type="submit" onClick={handleAddPatientClick}>
+                Add Patient
+              </button>
             </div>
           </div>
 
@@ -117,7 +123,11 @@ const PatientSearch: React.FC = () => {
           <div className={styles.patientDisplay}>
             <div className={styles.patientBox}>
               {filteredPatients.map((patient) => (
-                <div key={patient.id} className={styles.patientItem}>
+                <div
+                  key={patient.id}
+                  className={styles.patientItem}
+                  onClick={() => handlePatientClick(patient.id)}
+                >
                   <p>
                     {patient.first_name} {patient.last_name}
                   </p>

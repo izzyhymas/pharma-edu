@@ -8,7 +8,7 @@ function Patient() {
   return (
     <div>
       <Route path="patient/search" element={<PatientSearch />} />
-      <Route path="patient" element={<PatientProfile />} />
+      <Route path="patient/profile/:id" element={<PatientProfile />} />
       <Route path="patient/prescription" element={<Prescription />} />
       <Route path="patient/add" element={<AddPatient />} />
     </div>
