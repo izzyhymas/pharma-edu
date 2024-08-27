@@ -170,8 +170,8 @@
 .addPatientButton {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: end;
   padding: 1rem 1rem;
 }
 

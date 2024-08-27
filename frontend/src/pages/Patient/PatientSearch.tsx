@@ -78,20 +78,20 @@ const PatientSearch: React.FC = () => {
             <hr></hr>
             <div className={styles.patientSearchFields}>
               <label>
-                <p>Last Name:</p>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={searchParams.lastName}
-                  onChange={handleChange}
-                ></input>
-              </label>
-              <label>
                 <p>First Name:</p>
                 <input
                   type="text"
                   name="firstName"
                   value={searchParams.firstName}
+                  onChange={handleChange}
+                ></input>
+              </label>
+              <label>
+                <p>Last Name:</p>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={searchParams.lastName}
                   onChange={handleChange}
                 ></input>
               </label>
