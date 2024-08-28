@@ -10,7 +10,7 @@ const PatientProfile: React.FC = () => {
   // Get patient ID from URL
   const { id } = useParams<{ id: string }>();
   // State to store patient data
-  const [patient, setPatient] = useState<any>(null);
+  const [patient, setPatient] = useState<any>("");
   // State to edit patient data
   const [isEditing, setIsEditing] = useState(false);
   const [showDoctorModal, setShowDoctorModal] = useState(false);
@@ -37,10 +37,40 @@ const PatientProfile: React.FC = () => {
   }, [id]);
 
   const handleEditToggle = () => {
-    setIsEditing((prev) => !prev);
+    if (isEditing) {
+      handleSave();
+    } else {
+      setIsEditing(true);
+    }
   };
 
-  if (!patient) return <p>Loading...</p>; // Show loading message if patient data is not yet available
+  const handleSave = async () => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/patients/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(patient),
+      });
+      if (response.ok) {
+        alert("Patient information updated successfully!");
+      } else {
+        alert("Failed to update patient information.");
+      }
+    } catch (error) {
+      console.error("Error updating patient:", error);
+    }
+    setIsEditing(false);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setPatient((prev: any) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
     <div className={styles.patientProfilePage}>
@@ -61,38 +91,81 @@ const PatientProfile: React.FC = () => {
           <div className={styles.generalInfoFields}>
             <label>
               <p>First Name:</p>
-              <input type="text" value={patient.first_name} readOnly={!isEditing}></input>
+              <input
+                type="text"
+                name="first_name"
+                value={patient.first_name || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>Last Name:</p>
-              <input type="text" value={patient.last_name} readOnly={!isEditing}></input>
+              <input
+                type="text"
+                name="last_name"
+                value={patient.last_name || ""}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>DOB:</p>
-              <input type="date" value={patient.date_of_birth} readOnly={!isEditing}></input>
+              <input
+                type="date"
+                name="date_of_birth"
+                value={patient.date_of_birth || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>Street:</p>
-              <input type="text" value={patient.street} readOnly={!isEditing}></input>
+              <input
+                type="text"
+                name="street"
+                value={patient.street || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>City:</p>
-              <input type="text" value={patient.city} readOnly={!isEditing}></input>
+              <input
+                type="text"
+                name="city"
+                value={patient.city || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>State:</p>
-              <input type="text" value={patient.state} readOnly={!isEditing}></input>
+              <input
+                type="text"
+                name="state"
+                value={patient.state || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>Zipcode:</p>
-              <input type="text" value={patient.zipcode} readOnly={!isEditing}></input>
+              <input
+                type="text"
+                name="zipcode"
+                value={patient.zipcode || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>Primary Doctor:</p>
               <div className={styles.searchImg}>
                 <input
                   type="text"
-                  value={patient.primary_care_prescriber_id}
+                  name="primary_care_prescriber_id"
+                  value={patient.primary_care_prescriber_id || ""}
+                  onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
                 <img
@@ -109,12 +182,19 @@ const PatientProfile: React.FC = () => {
             ></DoctorModal>
             <label>
               <p>Allergies:</p>
-              <input type="text" value={patient.allergies} readOnly={!isEditing}></input>
+              <input
+                type="text"
+                name="allergies"
+                value={patient.allergies || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <hr></hr>
             <div className={styles.GeneralButtonContainer}>
-              <button type="submit" onClick={handleEditToggle}>{isEditing ? "Save Information" : "Edit Information"}</button>
-              <button type="submit">Save Information</button>
+              <button type="button" onClick={handleEditToggle}>
+                {isEditing ? "Save Information" : "Edit Information"}
+              </button>
             </div>
           </div>
         </div>
@@ -130,7 +210,9 @@ const PatientProfile: React.FC = () => {
                 <p>Member ID:</p>
                 <input
                   type="text"
-                  value={patient.member_id_number}
+                  name="member_id_number"
+                  value={patient.member_id_number || ""}
+                  onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
               </label>
@@ -138,23 +220,40 @@ const PatientProfile: React.FC = () => {
                 <p>Insurance Group Number:</p>
                 <input
                   type="text"
-                  value={patient.insurance_group_number}
+                  name="insurance_group_number"
+                  value={patient.insurance_group_number || ""}
+                  onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
               </label>
               <label>
                 <p>BIN:</p>
-                <input type="text" value={patient.bin} readOnly={!isEditing}></input>
+                <input
+                  type="text"
+                  name="insurance_rx_bin"
+                  value={patient.insurance_rx_bin || ""}
+                  onChange={handleChange}
+                  readOnly={!isEditing}
+                ></input>
               </label>
               <label>
                 <p>PCN:</p>
-                <input type="text" value={patient.pcn} readOnly={!isEditing}></input>
+                <input
+                  type="text"
+                  name="insurance_rx_pcn"
+                  value={patient.insurance_rx_pcn || ""}
+                  onChange={handleChange}
+                  readOnly={!isEditing}
+                ></input>
               </label>
               <label>
                 <p>Person Code:</p>
                 <input
                   type="text"
-                  value={patient.insurance_person_code}
+                  name="insurance_person_code"
+                  value={patient.insurance_person_code || ""}
+                  onChange={handleChange}
+                  readOnly={!isEditing}
                 ></input>
               </label>
               <hr></hr>
