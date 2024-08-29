@@ -4,7 +4,7 @@ from sqlmodel import Session, select
 from exceptions import RxItemNotFound
 from database import get_db
 from models import RxItem
-from schemas import RxItemCreateResponse, RxItemUpdateRequest
+from schemas import RxItemCreateRequest, RxItemCreateResponse, RxItemUpdateRequest
 
 
 router = APIRouter()
@@ -15,8 +15,18 @@ async def get_rx_items(session: Session = Depends(get_db)) -> list[RxItem]:
     return session.exec(select(RxItem)).all()
 
 
+@router.get("/rx-items/{id}")
+async def get_rx_item(id: int, session: Session = Depends(get_db)) -> RxItem:
+    rx_item: RxItem | None = session.get(RxItem, id)
+    if rx_item is None:
+        raise RxItemNotFound(id=id)
+
+    return rx_item
+
+
 @router.post("/rx-items")
-async def create_rx_item(rx_item: RxItem, session: Session = Depends(get_db)) -> RxItemCreateResponse:
+async def create_rx_item(rx_item_create_request: RxItemCreateRequest, session: Session = Depends(get_db)) -> RxItemCreateResponse:
+    rx_item: RxItem = RxItem.from_orm(rx_item_create_request)
     session.add(rx_item)
     session.commit()
     session.refresh(rx_item)
