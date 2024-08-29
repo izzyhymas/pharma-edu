@@ -136,8 +136,8 @@ const PrescriberProfile: React.FC = () => {
               <p>Contact Number:</p>
               <input
                 type="text"
-                name="contact_name"
-                value={prescriber.contact_name || ""}
+                name="contact_number"
+                value={prescriber.contact_number || ""}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>

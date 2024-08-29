@@ -1,31 +1,24 @@
 import { useState } from "react";
 import styles from "./AddPatient.module.css";
-import DoctorModal from "../../components/DoctorModal";
-
-import search from "../../assets/magnifying-glass.svg";
 
 const AddPatient: React.FC = () => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     date_of_birth: "",
+    phone_number: "",
     street: "",
     city: "",
     state: "",
     zipcode: "",
-    primary_care_prescriber_id: "",
     allergies: "",
-    member_id_number: "",
+    insurance_name: "",
+    insurance_member_id: "",
     insurance_group_number: "",
     insurance_rx_bin: "",
     insurance_rx_pcn: "",
     insurance_person_code: "",
   });
-
-  const [showDoctorModal, setShowDoctorModal] = useState(false);
-
-  const handleShowDoctorModal = () => setShowDoctorModal(true);
-  const handleCloseDoctorModal = () => setShowDoctorModal(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -99,6 +92,15 @@ const AddPatient: React.FC = () => {
                 </div>
               </label>
               <label>
+                <p>Phone Number:</p>
+                  <input
+                    type="text"
+                    name="phone_number"
+                    value={formData.phone_number}
+                    onChange={handleChange}
+                  ></input>
+              </label>
+              <label>
                 <p>Street:</p>
                 <input
                   type="text"
@@ -135,22 +137,6 @@ const AddPatient: React.FC = () => {
                 ></input>
               </label>
               <label>
-                <p>Primary Doctor:</p>
-                <div className={styles.addPatientDoctorSearch}>
-                  <input
-                    type="text"
-                    name="primary_care_prescriber_id"
-                    value={formData.primary_care_prescriber_id}
-                    onChange={handleChange}
-                  ></input>
-                  <img
-                    src={search}
-                    alt="search-image"
-                    onClick={handleShowDoctorModal}
-                  ></img>
-                </div>
-              </label>
-              <label>
                 <p>Allergies:</p>
                 <input
                   type="text"
@@ -160,10 +146,6 @@ const AddPatient: React.FC = () => {
                 ></input>
               </label>
             </div>
-            <DoctorModal
-              show={showDoctorModal}
-              handleClose={handleCloseDoctorModal}
-            ></DoctorModal>
           </div>
 
           <div className={styles.addPatientSep}></div>
@@ -174,11 +156,20 @@ const AddPatient: React.FC = () => {
               <hr></hr>
               <div className={styles.patientInsuranceFields}>
                 <label>
+                  <p>Insurance:</p>
+                  <input
+                    type="text"
+                    name="insurance_name"
+                    value={formData.insurance_name}
+                    onChange={handleChange}
+                  ></input>
+                </label>
+                <label>
                   <p>Member ID:</p>
                   <input
                     type="text"
-                    name="member_id_number"
-                    value={formData.member_id_number}
+                    name="insurance_member_id"
+                    value={formData.insurance_member_id}
                     onChange={handleChange}
                   ></input>
                 </label>

@@ -4,7 +4,6 @@ import styles from "./AddPrescriber.module.css";
 
 const AddPrescriber: React.FC = () => {
   const [formData, setFormData] = useState({
-    id: "",
     first_name: "",
     last_name: "",
     prescriber_type: "",
@@ -57,15 +56,6 @@ const AddPrescriber: React.FC = () => {
         <div className={styles.addPrescriberContainer}>
           <div className={styles.addPrescriberInfo}>
             <div className={styles.addPrescriberInfoFields}>
-              <label>
-                <p>ID:</p>
-                <input
-                  type="text"
-                  name="id"
-                  value={formData.id}
-                  onChange={handleChange}
-                ></input>
-              </label>
               <label>
                 <p>First Name:</p>
                 <input

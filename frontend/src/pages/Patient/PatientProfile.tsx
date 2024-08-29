@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import DoctorModal from "../../components/DoctorModal";
 import { useParams } from "react-router-dom";
 
 import styles from "./PatientProfile.module.css";
 
-import magnifying from "../../assets/magnifying-glass.svg";
 
 const PatientProfile: React.FC = () => {
   // Get patient ID from URL
@@ -13,10 +11,7 @@ const PatientProfile: React.FC = () => {
   const [patient, setPatient] = useState<any>("");
   // State to toggle between editing and viewing patient information
   const [isEditing, setIsEditing] = useState(false);
-  const [showDoctorModal, setShowDoctorModal] = useState(false);
 
-  const handleShowDoctorModal = () => setShowDoctorModal(true);
-  const handleCloseDoctorModal = () => setShowDoctorModal(false);
 
   // Fetch patient data
   useEffect(() => {
@@ -110,6 +105,7 @@ const PatientProfile: React.FC = () => {
                 type="text"
                 name="last_name"
                 value={patient.last_name || ""}
+                onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
             </label>
@@ -119,6 +115,16 @@ const PatientProfile: React.FC = () => {
                 type="date"
                 name="date_of_birth"
                 value={patient.date_of_birth || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
+            </label>
+            <label>
+              <p>Phone Number:</p>
+              <input
+                type="text"
+                name="phone_number"
+                value={patient.phone_number || ""}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -164,28 +170,6 @@ const PatientProfile: React.FC = () => {
               ></input>
             </label>
             <label>
-              <p>Primary Doctor:</p>
-              <div className={styles.searchImg}>
-                <input
-                  type="text"
-                  name="primary_care_prescriber_id"
-                  value={patient.primary_care_prescriber_id || ""}
-                  onChange={handleChange}
-                  readOnly={!isEditing}
-                ></input>
-                <img
-                  src={magnifying}
-                  alt="magnifying-glass"
-                  className={styles.searchDoctor}
-                  onClick={handleShowDoctorModal}
-                ></img>
-              </div>
-            </label>
-            <DoctorModal
-              show={showDoctorModal}
-              handleClose={handleCloseDoctorModal}
-            ></DoctorModal>
-            <label>
               <p>Allergies:</p>
               <input
                 type="text"
@@ -212,11 +196,21 @@ const PatientProfile: React.FC = () => {
             <hr></hr>
             <div className={styles.insuranceInfoFields}>
               <label>
+                <p>Insurance:</p>
+                <input
+                  type="text"
+                  name="insurance_name"
+                  value={patient.insurance_name || ""}
+                  onChange={handleChange}
+                  readOnly={!isEditing}
+                ></input>
+              </label>
+              <label>
                 <p>Member ID:</p>
                 <input
                   type="text"
-                  name="member_id_number"
-                  value={patient.member_id_number || ""}
+                  name="insurance_member_id"
+                  value={patient.insurance_member_id || ""}
                   onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
