@@ -78,7 +78,7 @@ const PatientSearch: React.FC = () => {
       <div className={styles.patientSearch}>
         <div className={styles.patientSearchContainer}>
           <div className={styles.patientSearchContent}>
-            <h3>Patient:</h3>
+            <h3>Patient</h3>
             <hr></hr>
             <div className={styles.patientSearchFields}>
               <label>

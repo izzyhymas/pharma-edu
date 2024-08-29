@@ -18,9 +18,24 @@
     object-fit: contain;
 }
 
+.profile {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.profileImage {
+    background-color: #FFFFFF;
+    border-radius: 100px;
+    border: none;
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+}
+
 .navItem {
     display: flex;
-    gap: 6vw;
+    gap: 8vw;
     list-style: none;
     margin: 0;
     padding: 0;

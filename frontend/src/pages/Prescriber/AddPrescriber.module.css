@@ -62,11 +62,18 @@
 
 .GeneralButtonContainer button {
   background-color: #4d79a9;
+  color: #ffffff;
   border: none;
-  padding: 0.5rem;
-  width: 10vw;
-  border-radius: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.GeneralButtonContainer button:hover {
+  background-color: #416892;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

@@ -11,14 +11,19 @@
 
 .prescriberName h3 {
   margin: 0;
-  font-weight: 600;
+  font-weight: 800;
   padding: 0.5rem;
 }
 
 .prescriberProfileContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.prescriberInfoFields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .prescriberInfo {
@@ -26,23 +31,12 @@
   flex-direction: column;
 }
 
-.prescriberInfo h3 {
-  font-size: 1.5rem;
-  padding: 0.5rem;
-}
-
-.prescriberInfoFields {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 2rem;
-}
-
 .prescriberInfo label {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 1rem;
-  width: 100%;
+  width: 50%;
   padding: 0.5rem;
 }
 
@@ -60,7 +54,7 @@
   border: none;
   padding: 0.5rem;
   border-radius: 10px;
-  width: 50%;
+  width: 60%;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -73,11 +67,18 @@
 
 .GeneralButtonContainer button {
   background-color: #4d79a9;
+  color: #ffffff;
   border: none;
-  padding: 0.5rem;
-  width: 10vw;
-  border-radius: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 1rem;
-  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.GeneralButtonContainer button:hover {
+  background-color: #416892;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

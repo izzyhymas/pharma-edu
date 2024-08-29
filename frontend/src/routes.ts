@@ -35,7 +35,7 @@ const routes: PharmacyRoutes[] = [
   },
   {
     name: "Prescriber",
-    path: "/presriber/search",
+    path: "/prescriber/search",
     component: PrescriberSearch,
   },
   {

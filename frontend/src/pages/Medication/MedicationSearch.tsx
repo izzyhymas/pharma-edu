@@ -56,9 +56,13 @@ const MedicationSearch: React.FC = () => {
     }));
   };
 
+  const handleMedicationClick = (id: string) => {
+    navigate(`/rx-item/profile/${id}`);
+  };
+
   const handleAddMedicationClick = () => {
     navigate("/medication/add");
-  }
+  };
 
   return (
     <div className={styles.medicationPage}>
@@ -92,7 +96,9 @@ const MedicationSearch: React.FC = () => {
               </label>
             </div>
             <div className={styles.medicationSearchButton}>
-              <button type="submit" onClick={handleAddMedicationClick}>Add Medication</button>
+              <button type="submit" onClick={handleAddMedicationClick}>
+                Add Medication
+              </button>
             </div>
           </div>
 
@@ -101,10 +107,12 @@ const MedicationSearch: React.FC = () => {
           <div className={styles.medicationDisplay}>
             <div className={styles.medicationBox}>
               {filteredMedications.map((medication) => (
-                <div key={medication.id} className={styles.medicationItem}>
-                  <p>
-                    {medication.name}
-                  </p>
+                <div
+                  key={medication.id}
+                  className={styles.medicationItem}
+                  onClick={() => handleMedicationClick(medication.id)}
+                >
+                  <p>{medication.name}</p>
                   <p>{medication.ndc}</p>
                 </div>
               ))}

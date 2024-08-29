@@ -14,7 +14,7 @@ const PrescriberSearch: React.FC = () => {
     dea: "",
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // useEffect to fetch all patients data
   useEffect(() => {
@@ -68,9 +68,13 @@ const PrescriberSearch: React.FC = () => {
     }));
   };
 
+  const handlePrescriberClick = (id: string) => {
+    navigate(`/prescriber/profile/${id}`);
+  };
+
   const handleAddPrescriberClick = () => {
     navigate("/prescriber/add");
-  }
+  };
 
   return (
     <div className={styles.prescriberPage}>
@@ -85,20 +89,20 @@ const PrescriberSearch: React.FC = () => {
             <hr></hr>
             <div className={styles.prescriberSearchFields}>
               <label>
-                <p>Last Name:</p>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={searchParams.lastName}
-                  onChange={handleChange}
-                ></input>
-              </label>
-              <label>
                 <p>First Name:</p>
                 <input
                   type="text"
                   name="firstName"
                   value={searchParams.firstName}
+                  onChange={handleChange}
+                ></input>
+              </label>
+              <label>
+                <p>Last Name:</p>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={searchParams.lastName}
                   onChange={handleChange}
                 ></input>
               </label>
@@ -113,7 +117,9 @@ const PrescriberSearch: React.FC = () => {
               </label>
             </div>
             <div className={styles.prescriberSearchButton}>
-              <button type="submit" onClick={handleAddPrescriberClick}>Add Prescriber</button>
+              <button type="submit" onClick={handleAddPrescriberClick}>
+                Add Prescriber
+              </button>
             </div>
           </div>
 
@@ -122,7 +128,11 @@ const PrescriberSearch: React.FC = () => {
           <div className={styles.prescriberDisplay}>
             <div className={styles.prescriberBox}>
               {filteredPrescribers.map((prescriber) => (
-                <div key={prescriber.id} className={styles.prescriberItem}>
+                <div
+                  key={prescriber.id}
+                  className={styles.prescriberItem}
+                  onClick={() => handlePrescriberClick(prescriber.id)}
+                >
                   <p>
                     {prescriber.first_name} {prescriber.last_name}
                   </p>

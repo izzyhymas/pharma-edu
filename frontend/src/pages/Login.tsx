@@ -35,11 +35,11 @@ const Login: React.FC = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </form>
-          </div>
-          <div className={styles.buttonContainer}>
-            <button type="submit" className={styles.submitButton}>
-              Sign in
-            </button>
+            <div className={styles.buttonContainer}>
+              <button type="submit" className={styles.submitButton}>
+                Sign in
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -11,31 +11,33 @@ const PatientProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   // State to store patient data
   const [patient, setPatient] = useState<any>("");
-  // State to edit patient data
+  // State to toggle between editing and viewing patient information
   const [isEditing, setIsEditing] = useState(false);
   const [showDoctorModal, setShowDoctorModal] = useState(false);
 
   const handleShowDoctorModal = () => setShowDoctorModal(true);
   const handleCloseDoctorModal = () => setShowDoctorModal(false);
 
+  // Fetch patient data
   useEffect(() => {
     const fetchPatient = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:8000/patients/${id}`);
         const data = await response.json();
-        // Store fetched patient data
+        // Update state with fetched patient data
         setPatient(data);
       } catch (error) {
-        console.error("Error fetching patient:", error);
+        console.error('Error fetching patient:', error);
       }
     };
 
     if (id) {
-      // Fetch patient data when ID is available
+      // Fetch patient data if ID is available
       fetchPatient();
     }
   }, [id]);
 
+  // Toggle between editing and saving
   const handleEditToggle = () => {
     if (isEditing) {
       handleSave();
@@ -44,6 +46,7 @@ const PatientProfile: React.FC = () => {
     }
   };
 
+  // Save updated patient data to database
   const handleSave = async () => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/patients/${id}`, {
@@ -64,11 +67,13 @@ const PatientProfile: React.FC = () => {
     setIsEditing(false);
   };
 
+  // Handle changes to form fields
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+    // Update the patient state with the new field data
     setPatient((prev: any) => ({
-      ...prev,
-      [name]: value,
+      ...prev, // Spread operator that creates copy of object
+      [name]: value || "", // Ensures that state is not undefined or null
     }));
   };
 

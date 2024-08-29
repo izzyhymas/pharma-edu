@@ -26,11 +26,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   max-width: 100%;
   padding: 20px;
   height: auto;
-  width: 35vw;
+  width: 30vw;
   background-color: #d1d3d4;
   border: #2e3f59 solid 6px;
   border-radius: 20px;
@@ -43,6 +42,12 @@
   font-weight: 600;
 }
 
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .loginForm p {
   color: #2e3f59;
   font-weight: 500;
@@ -50,11 +55,9 @@
   margin-bottom: 0;
 }
 
-.loginForm {
-  width: 30vw;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.loginForm input {
+  width: 100%;
+
 }
 
 .inputField {
@@ -64,8 +67,8 @@
   border-radius: 20px;
   border: none;
   background-color: #ffffff;
-  border: #6364664c 2px solid;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
+  border: #6364664c 1px solid;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
 .inputField::placeholder {
@@ -80,20 +83,19 @@
 }
 
 .submitButton {
-  align-items: center;
-  width: 10vw;
-  margin-top: 5vh;
-  background-color: #4d79a9;
-  font-size: large;
-  font-weight: 500;
+  background-color: #2e3f59;
   color: #ffffff;
   border: none;
-  border-radius: 100px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .submitButton:hover {
-  background-color: #416892;
+  background-color: #212e42;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
