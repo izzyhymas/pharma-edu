@@ -9,8 +9,8 @@ const AddMedication: React.FC = () => {
     ndc: "",
     expiration: "",
     lot_number: "",
+    dosage_form: "",
     dea_schedule: "",
-    drug_class: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,11 +108,11 @@ const AddMedication: React.FC = () => {
                 ></input>
               </label>
               <label>
-                <p>Drug Class:</p>
+                <p>Dosage Form:</p>
                 <input
                   type="text"
-                  name="drug_class"
-                  value={formData.drug_class}
+                  name="dosage_form"
+                  value={formData.dosage_form}
                   onChange={handleChange}
                 ></input>
               </label>

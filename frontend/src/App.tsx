@@ -40,9 +40,9 @@ const App: React.FC = () => {
           <Route path="prescriber/profile/:id" element={<PrescriberProfile />} />
           <Route path="prescriber/add" element={<AddPrescriber />} />
 
-          <Route path="medication/search" element={<MedicationSearch />} />
-          <Route path="medication" element={<MedicationProfile />} />
-          <Route path="medication/add" element={<AddMedication />} />
+          <Route path="rx-item/search" element={<MedicationSearch />} />
+          <Route path="rx-item/profile/:id" element={<MedicationProfile />} />
+          <Route path="rx-item/add" element={<AddMedication />} />
         </Routes>
       </div>
       {/* Renders Nav component based on current path */}

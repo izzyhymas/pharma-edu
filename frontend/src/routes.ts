@@ -40,7 +40,7 @@ const routes: PharmacyRoutes[] = [
   },
   {
     name: "Medication",
-    path: "/medication/search",
+    path: "/rx-item/search",
     component: MedicationSearch,
   },
   {

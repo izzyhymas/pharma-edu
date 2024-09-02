@@ -34,7 +34,7 @@ const MedicationProfile: React.FC = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/patients/${id}`, {
+      const response = await fetch(`http://127.0.0.1:8000/rx-items/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -52,6 +52,15 @@ const MedicationProfile: React.FC = () => {
     setIsEditing(false);
   };
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setMedication((prev: any) => ({
+      ...prev,
+      [name]: value || "",
+    }));
+  };
+
   return (
     <div className={styles.medicationProfilePage}>
       <div className={styles.medicationProfileTitle}>
@@ -59,7 +68,7 @@ const MedicationProfile: React.FC = () => {
         <hr></hr>
       </div>
       <div className={styles.medicationName}>
-        <h3>*Medication*</h3>
+        <h3>{medication.name}</h3>
         <hr></hr>
       </div>
       <div className={styles.medicationProfileContainer}>
@@ -67,35 +76,78 @@ const MedicationProfile: React.FC = () => {
           <div className={styles.medicationInfoFields}>
             <label>
               <p>Medication:</p>
-              <input type="text"></input>
+              <input
+                type="text"
+                name="name"
+                value={medication.name || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>Medication Strength:</p>
-              <input type="text"></input>
-            </label>
-            <label>
-              <p>Drug Class:</p>
-              <input type="text"></input>
+              <input
+                type="text"
+                name="strength"
+                value={medication.strength || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>NDC:</p>
-              <input type="text"></input>
+              <input
+                type="text"
+                name="ndc"
+                value={medication.ndc || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>Expiration:</p>
-              <input type="text"></input>
+              <input
+                type="text"
+                name="expiration"
+                value={medication.expiration || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>Lot Number:</p>
-              <input type="text"></input>
+              <input
+                type="text"
+                name="lot_number"
+                value={medication.lot_number || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
+            </label>
+            <label>
+              <p>Dosage Form:</p>
+              <input
+                type="text"
+                name="dosage_form"
+                value={medication.dosage_form || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <label>
               <p>DEA Schedule:</p>
-              <input type="text"></input>
+              <input
+                type="text"
+                name="dea_schedule"
+                value={medication.dea_schedule || ""}
+                onChange={handleChange}
+                readOnly={!isEditing}
+              ></input>
             </label>
             <div className={styles.GeneralButtonContainer}>
-              <button type="submit">Edit Information</button>
-              <button type="submit">Save Information</button>
+              <button type="button" onClick={handleEditToggle}>
+                {isEditing ? "Save Information" : "Edit Information"}
+              </button>
             </div>
           </div>
         </div>

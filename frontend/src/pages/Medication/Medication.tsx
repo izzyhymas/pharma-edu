@@ -6,9 +6,9 @@ import AddMedication from "./AddMedication";
 function Medication() {
   return (
     <div>
-      <Route path="medication/search" element={<MedicationSearch />} />
-      <Route path="medication" element={<MedicationProfile />} />
-      <Route path="medication/add" element={<AddMedication />} />
+      <Route path="rx-item/search" element={<MedicationSearch />} />
+      <Route path="rx-item/profile/:id" element={<MedicationProfile />} />
+      <Route path="rx-item/add" element={<AddMedication />} />
     </div>
   );
 }
