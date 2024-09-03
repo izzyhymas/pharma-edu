@@ -3,13 +3,13 @@ import styles from "./MedicationProfile.module.css";
 import { useEffect, useState } from "react";
 
 interface Medication {
-  name: string,
-  strength: string,
-  ndc: string,
-  expiration: string,
-  lot_number: string,
-  dosage_form: string,
-  dea_schedule: string
+  name: string;
+  strength: string;
+  ndc: string;
+  expiration: string;
+  lot_number: string;
+  dosage_form: string;
+  dea_schedule: string;
 }
 
 const MedicationProfile: React.FC = () => {
@@ -77,91 +77,97 @@ const MedicationProfile: React.FC = () => {
         <h3>Medication Profile</h3>
         <hr></hr>
       </div>
-      <div className={styles.medicationName}>
-        <h3>{medication!.name}</h3>
-        <hr></hr>
-      </div>
-      <div className={styles.medicationProfileContainer}>
-        <div className={styles.medicationInfo}>
-          <div className={styles.medicationInfoFields}>
-            <label>
-              <p>Medication:</p>
-              <input
-                type="text"
-                name="name"
-                value={medication!.name}
-                onChange={handleChange}
-                readOnly={!isEditing}
-              ></input>
-            </label>
-            <label>
-              <p>Medication Strength:</p>
-              <input
-                type="text"
-                name="strength"
-                value={medication!.strength}
-                onChange={handleChange}
-                readOnly={!isEditing}
-              ></input>
-            </label>
-            <label>
-              <p>NDC:</p>
-              <input
-                type="text"
-                name="ndc"
-                value={medication!.ndc}
-                onChange={handleChange}
-                readOnly={!isEditing}
-              ></input>
-            </label>
-            <label>
-              <p>Expiration:</p>
-              <input
-                type="text"
-                name="expiration"
-                value={medication!.expiration}
-                onChange={handleChange}
-                readOnly={!isEditing}
-              ></input>
-            </label>
-            <label>
-              <p>Lot Number:</p>
-              <input
-                type="text"
-                name="lot_number"
-                value={medication!.lot_number}
-                onChange={handleChange}
-                readOnly={!isEditing}
-              ></input>
-            </label>
-            <label>
-              <p>Dosage Form:</p>
-              <input
-                type="text"
-                name="dosage_form"
-                value={medication!.dosage_form}
-                onChange={handleChange}
-                readOnly={!isEditing}
-              ></input>
-            </label>
-            <label>
-              <p>DEA Schedule:</p>
-              <input
-                type="text"
-                name="dea_schedule"
-                value={medication!.dea_schedule}
-                onChange={handleChange}
-                readOnly={!isEditing}
-              ></input>
-            </label>
-            <div className={styles.GeneralButtonContainer}>
-              <button type="button" onClick={handleEditToggle}>
-                {isEditing ? "Save Information" : "Edit Information"}
-              </button>
+      {medication ? (
+        <>
+          <div className={styles.medicationName}>
+            <h3>{medication.name}</h3>
+            <hr></hr>
+          </div>
+          <div className={styles.medicationProfileContainer}>
+            <div className={styles.medicationInfo}>
+              <div className={styles.medicationInfoFields}>
+                <label>
+                  <p>Medication:</p>
+                  <input
+                    type="text"
+                    name="name"
+                    value={medication.name}
+                    onChange={handleChange}
+                    readOnly={!isEditing}
+                  ></input>
+                </label>
+                <label>
+                  <p>Medication Strength:</p>
+                  <input
+                    type="text"
+                    name="strength"
+                    value={medication.strength}
+                    onChange={handleChange}
+                    readOnly={!isEditing}
+                  ></input>
+                </label>
+                <label>
+                  <p>NDC:</p>
+                  <input
+                    type="text"
+                    name="ndc"
+                    value={medication.ndc}
+                    onChange={handleChange}
+                    readOnly={!isEditing}
+                  ></input>
+                </label>
+                <label>
+                  <p>Expiration:</p>
+                  <input
+                    type="text"
+                    name="expiration"
+                    value={medication.expiration}
+                    onChange={handleChange}
+                    readOnly={!isEditing}
+                  ></input>
+                </label>
+                <label>
+                  <p>Lot Number:</p>
+                  <input
+                    type="text"
+                    name="lot_number"
+                    value={medication.lot_number}
+                    onChange={handleChange}
+                    readOnly={!isEditing}
+                  ></input>
+                </label>
+                <label>
+                  <p>Dosage Form:</p>
+                  <input
+                    type="text"
+                    name="dosage_form"
+                    value={medication.dosage_form}
+                    onChange={handleChange}
+                    readOnly={!isEditing}
+                  ></input>
+                </label>
+                <label>
+                  <p>DEA Schedule:</p>
+                  <input
+                    type="text"
+                    name="dea_schedule"
+                    value={medication.dea_schedule}
+                    onChange={handleChange}
+                    readOnly={!isEditing}
+                  ></input>
+                </label>
+                <div className={styles.GeneralButtonContainer}>
+                  <button type="button" onClick={handleEditToggle}>
+                    {isEditing ? "Save Information" : "Edit Information"}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <p>Loading medication data..</p>
+      )}
     </div>
   );
 };
