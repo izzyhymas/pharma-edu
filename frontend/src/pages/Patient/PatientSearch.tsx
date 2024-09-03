@@ -20,12 +20,13 @@ const PatientSearch: React.FC = () => {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
+        // Fetch data from API
         const response = await fetch("http://127.0.0.1:8000/patients");
         const data = await response.json();
         setPatients(data); // Stores fetched patients
         setFilteredPatients(data); // Initially set filtered patients to all patients
       } catch (error) {
-        console.error("Error fetching patients:", error); // Handles errors
+        console.error("Error fetching patients:", error); // Logs errors
       }
     };
 
@@ -35,6 +36,7 @@ const PatientSearch: React.FC = () => {
   // useEffect to filter patients whenever searchParams or patients change
   useEffect(() => {
     const filterPatients = () => {
+      // Destructures the search parameters from state
       const { firstName, lastName, dateOfBirth } = searchParams;
       const filtered = patients.filter(
         (patient) =>
@@ -61,10 +63,12 @@ const PatientSearch: React.FC = () => {
     }));
   };
 
+  // Handles click on patient and navigates to their profile
   const handlePatientClick = (id: string) => {
     navigate(`/patient/profile/${id}`);
   };
 
+  // Handles click on "Add Patient" button to navigate to the Add Prescriber page
   const handleAddPatientClick = () => {
     navigate("/patient/add");
   };

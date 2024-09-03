@@ -16,26 +16,27 @@ const PrescriberSearch: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // useEffect to fetch all patients data
+  // useEffect to fetch all prescriber data
   useEffect(() => {
     const fetchPrescribers = async () => {
       try {
+        // Fetch data from API
         const response = await fetch("http://127.0.0.1:8000/prescribers");
         const data = await response.json();
         setPrescribers(data); // Stores fetched prescribers
         setFilteredPrescribers(data); // Initially sets filtered prescribers to all prescribers
       } catch (error) {
-        console.error("Error fetching prescribers:", error); // Handles errors
+        console.error("Error fetching prescribers:", error); // Logs errors
       }
     };
 
     fetchPrescribers();
   }, []); // Empty array ensures that this runs only once after initial render
 
-  // useEffect to filter prescribers whenever searchParams or patients change
-
+  // useEffect to filter prescribers whenever searchParams or prescribers change
   useEffect(() => {
     const filterPrescribers = () => {
+      // Destructures the search parameters from state
       const { firstName, lastName, dea } = searchParams;
       const filtered = prescribers.filter(
         (prescriber) =>
@@ -53,6 +54,7 @@ const PrescriberSearch: React.FC = () => {
             ? prescriber.dea.toLowerCase().includes(dea.toLowerCase())
             : true)
       );
+      // Update the filtered prescribers state
       setFilteredPrescribers(filtered); // Updates the filtered prescriber state
     };
 
@@ -68,10 +70,12 @@ const PrescriberSearch: React.FC = () => {
     }));
   };
 
+  // Handles click on prescriber and navigates to their profile
   const handlePrescriberClick = (id: string) => {
     navigate(`/prescriber/profile/${id}`);
   };
 
+  // Handles click on "Add Prescriber" button to navigate to the Add Prescriber page
   const handleAddPrescriberClick = () => {
     navigate("/prescriber/add");
   };

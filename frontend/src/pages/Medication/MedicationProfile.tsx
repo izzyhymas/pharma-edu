@@ -2,9 +2,19 @@ import { useParams } from "react-router-dom";
 import styles from "./MedicationProfile.module.css";
 import { useEffect, useState } from "react";
 
+interface Medication {
+  name: string,
+  strength: string,
+  ndc: string,
+  expiration: string,
+  lot_number: string,
+  dosage_form: string,
+  dea_schedule: string
+}
+
 const MedicationProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [medication, setMedication] = useState<any>("");
+  const [medication, setMedication] = useState<Medication>();
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -68,7 +78,7 @@ const MedicationProfile: React.FC = () => {
         <hr></hr>
       </div>
       <div className={styles.medicationName}>
-        <h3>{medication.name}</h3>
+        <h3>{medication!.name}</h3>
         <hr></hr>
       </div>
       <div className={styles.medicationProfileContainer}>
@@ -79,7 +89,7 @@ const MedicationProfile: React.FC = () => {
               <input
                 type="text"
                 name="name"
-                value={medication.name || ""}
+                value={medication!.name}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -89,7 +99,7 @@ const MedicationProfile: React.FC = () => {
               <input
                 type="text"
                 name="strength"
-                value={medication.strength || ""}
+                value={medication!.strength}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -99,7 +109,7 @@ const MedicationProfile: React.FC = () => {
               <input
                 type="text"
                 name="ndc"
-                value={medication.ndc || ""}
+                value={medication!.ndc}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -109,7 +119,7 @@ const MedicationProfile: React.FC = () => {
               <input
                 type="text"
                 name="expiration"
-                value={medication.expiration || ""}
+                value={medication!.expiration}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -119,7 +129,7 @@ const MedicationProfile: React.FC = () => {
               <input
                 type="text"
                 name="lot_number"
-                value={medication.lot_number || ""}
+                value={medication!.lot_number}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -129,7 +139,7 @@ const MedicationProfile: React.FC = () => {
               <input
                 type="text"
                 name="dosage_form"
-                value={medication.dosage_form || ""}
+                value={medication!.dosage_form}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -139,7 +149,7 @@ const MedicationProfile: React.FC = () => {
               <input
                 type="text"
                 name="dea_schedule"
-                value={medication.dea_schedule || ""}
+                value={medication!.dea_schedule}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>

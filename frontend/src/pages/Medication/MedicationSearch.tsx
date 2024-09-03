@@ -19,21 +19,23 @@ const MedicationSearch: React.FC = () => {
   useEffect(() => {
     const fetchMedication = async () => {
       try {
+        // Fetch data from API
         const response = await fetch("http://127.0.0.1:8000/rx-items");
         const data = await response.json();
         setMedications(data); // Stores fetched medication
         setFilteredMedications(data); // Initially set filtered medication to all medication
       } catch (error) {
-        console.error("Error fetching medication:", error); // Handles errors
+        console.error("Error fetching medication:", error); // Logs errors
       }
     };
 
     fetchMedication();
   }, []); // Empty array ensures that this runs only once after initial render
 
-  // useEffect to filter patients whenever searchParams or patients change
+  // useEffect to filter medications whenever searchParams or medications change
   useEffect(() => {
-    const filterPatients = () => {
+    const filterMedications = () => {
+      // Destructures the search parameters from state
       const { name, ndc } = searchParams;
       const filtered = medications.filter(
         (medication) =>
@@ -41,10 +43,10 @@ const MedicationSearch: React.FC = () => {
             ? medication.name.toLowerCase().includes(name.toLowerCase())
             : true) && (ndc ? medication.ndc.includes(ndc) : true)
       );
-      setFilteredMedications(filtered); // Updates the filtered patients state
+      setFilteredMedications(filtered); // Updates the filtered medications state
     };
 
-    filterPatients();
+    filterMedications();
   }, [searchParams, medications]); // Runs when searchParams or patients Change
 
   // Handle changes to search input fields
@@ -56,10 +58,12 @@ const MedicationSearch: React.FC = () => {
     }));
   };
 
+  // Handles click on medication and navigates to their profile
   const handleMedicationClick = (id: string) => {
     navigate(`/rx-item/profile/${id}`);
   };
 
+  // Handles click on the "Add Medication" button and navigates to the Add Medication page
   const handleAddMedicationClick = () => {
     navigate("/medication/add");
   };

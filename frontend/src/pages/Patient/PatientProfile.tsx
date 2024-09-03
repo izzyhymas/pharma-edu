@@ -3,13 +3,31 @@ import { useParams } from "react-router-dom";
 
 import styles from "./PatientProfile.module.css";
 
+interface Patient {
+  first_name: string,
+  last_name: string,
+  date_of_birth: string,
+  phone_number: string,
+  street: string,
+  city: string,
+  state: string,
+  zipcode: number,
+  allergies: string[],
+  insurance_name: string,
+  insurance_member_id: string,
+  insurance_group_number: string,
+  insurance_rx_bin: string,
+  insurance_rx_pcn: string,
+  insurance_person_code: string
+}
+
 
 const PatientProfile: React.FC = () => {
   // Get patient ID from URL
   const { id } = useParams<{ id: string }>();
   // State to store patient data
-  const [patient, setPatient] = useState<any>("");
-  // State to toggle between editing and viewing patient information
+  const [patient, setPatient] = useState<Patient>();
+  // State to toggle between e
   const [isEditing, setIsEditing] = useState(false);
 
 
@@ -80,7 +98,7 @@ const PatientProfile: React.FC = () => {
       </div>
       <div className={styles.patientName}>
         <h3>
-          {patient.first_name} {patient.last_name}
+          {patient!.first_name} {patient!.last_name}
         </h3>
         <hr></hr>
       </div>
@@ -94,7 +112,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="text"
                 name="first_name"
-                value={patient.first_name || ""}
+                value={patient!.first_name}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -104,7 +122,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="text"
                 name="last_name"
-                value={patient.last_name || ""}
+                value={patient!.last_name}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -114,7 +132,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="date"
                 name="date_of_birth"
-                value={patient.date_of_birth || ""}
+                value={patient!.date_of_birth}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -124,7 +142,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="text"
                 name="phone_number"
-                value={patient.phone_number || ""}
+                value={patient!.phone_number}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -134,7 +152,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="text"
                 name="street"
-                value={patient.street || ""}
+                value={patient!.street}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -144,7 +162,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="text"
                 name="city"
-                value={patient.city || ""}
+                value={patient!.city}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -154,7 +172,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="text"
                 name="state"
-                value={patient.state || ""}
+                value={patient!.state}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -164,7 +182,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="text"
                 name="zipcode"
-                value={patient.zipcode || ""}
+                value={patient!.zipcode}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -174,7 +192,7 @@ const PatientProfile: React.FC = () => {
               <input
                 type="text"
                 name="allergies"
-                value={patient.allergies || ""}
+                value={patient!.allergies}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -200,7 +218,7 @@ const PatientProfile: React.FC = () => {
                 <input
                   type="text"
                   name="insurance_name"
-                  value={patient.insurance_name || ""}
+                  value={patient!.insurance_name}
                   onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
@@ -210,7 +228,7 @@ const PatientProfile: React.FC = () => {
                 <input
                   type="text"
                   name="insurance_member_id"
-                  value={patient.insurance_member_id || ""}
+                  value={patient!.insurance_member_id}
                   onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
@@ -220,7 +238,7 @@ const PatientProfile: React.FC = () => {
                 <input
                   type="text"
                   name="insurance_group_number"
-                  value={patient.insurance_group_number || ""}
+                  value={patient!.insurance_group_number}
                   onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
@@ -230,7 +248,7 @@ const PatientProfile: React.FC = () => {
                 <input
                   type="text"
                   name="insurance_rx_bin"
-                  value={patient.insurance_rx_bin || ""}
+                  value={patient!.insurance_rx_bin}
                   onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
@@ -240,7 +258,7 @@ const PatientProfile: React.FC = () => {
                 <input
                   type="text"
                   name="insurance_rx_pcn"
-                  value={patient.insurance_rx_pcn || ""}
+                  value={patient!.insurance_rx_pcn}
                   onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>
@@ -250,7 +268,7 @@ const PatientProfile: React.FC = () => {
                 <input
                   type="text"
                   name="insurance_person_code"
-                  value={patient.insurance_person_code || ""}
+                  value={patient!.insurance_person_code}
                   onChange={handleChange}
                   readOnly={!isEditing}
                 ></input>

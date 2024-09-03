@@ -2,44 +2,64 @@ import { useParams } from "react-router-dom";
 import styles from "./PrescriberProfile.module.css";
 import { useEffect, useState } from "react";
 
+interface Prescriber {
+  first_name: string,
+  last_name: string,
+  dea: string,
+  npi: string,
+  prescriber_type: string,
+  contact_number: string,
+  street: string,
+  city: string,
+  state: string,
+  zipcode: number
+}
+
 const PrescriberProfile: React.FC = () => {
   // Get prescriber ID from URL
   const { id } = useParams<{ id: string }>();
   // State to store prescriber data
-  const [prescriber, setPrescriber] = useState<any>("");
-  // State to edit prescriber data
+  const [prescriber, setPrescriber] = useState<Prescriber>();
+  // State to track is user is in "edit" mode
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const fetchPrescriber = async () => {
       try {
+        // GET request to get prescriber by ID
         const response = await fetch(
           `http://127.0.0.1:8000/prescribers/${id}`
         );
         const data = await response.json();
-        // Store fetched prescriber data
+        // Updates the prescriber date with fetched data
         setPrescriber(data);
       } catch (error) {
+        // Logs any errors that occur when fetching
         console.error("Error fetching prescriber:", error);
       }
     };
 
+    // Check if ID exists before fetching prescriber data
     if (id) {
-      // Fetch prescriber data when ID is available
       fetchPrescriber();
     }
   }, [id]);
 
+  // Toggles between edit mode and view mode
   const handleEditToggle = () => {
     if (isEditing) {
+      // If editing, save the changes
       handleSave();
     } else {
+      // If not editing, enable edit mode
       setIsEditing(true);
     }
   };
 
+  // Function that handles saving the edited prescriber data
   const handleSave = async () => {
     try {
+      // Send a PATCH request to update the prescriber data
       const response = await fetch(
         `http://127.0.0.1:8000/prescribers/${id}`,
         {
@@ -47,7 +67,7 @@ const PrescriberProfile: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(prescriber),
+          body: JSON.stringify(prescriber), // Sends the updated prescriber data as JSON
         }
       );
       if (response.ok) {
@@ -58,6 +78,7 @@ const PrescriberProfile: React.FC = () => {
     } catch (error) {
       console.error("Error loading prescriber:", error);
     }
+    // Exit edit mode after saving
     setIsEditing(false);
   };
 
@@ -65,7 +86,7 @@ const PrescriberProfile: React.FC = () => {
     const { name, value } = event.target;
     setPrescriber((prev: any) => ({
       ...prev,
-      [name]: value,
+      [name]: value, // Updates specific field in the prescriber state
     }));
   };
 
@@ -87,7 +108,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="first_name"
-                value={prescriber.first_name || ""}
+                value={prescriber!.first_name}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -97,7 +118,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="last_name"
-                value={prescriber.last_name || ""}
+                value={prescriber!.last_name}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -107,7 +128,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="dea"
-                value={prescriber.dea || ""}
+                value={prescriber!.dea}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -117,7 +138,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="npi"
-                value={prescriber.npi || ""}
+                value={prescriber!.npi}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -127,7 +148,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="prescriber_type"
-                value={prescriber.prescriber_type || ""}
+                value={prescriber!.prescriber_type}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -137,7 +158,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="contact_number"
-                value={prescriber.contact_number || ""}
+                value={prescriber!.contact_number}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -147,7 +168,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="street"
-                value={prescriber.street || ""}
+                value={prescriber!.street}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -157,7 +178,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="city"
-                value={prescriber.city || ""}
+                value={prescriber!.city}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -167,7 +188,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="state"
-                value={prescriber.state || ""}
+                value={prescriber!.state}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
@@ -177,7 +198,7 @@ const PrescriberProfile: React.FC = () => {
               <input
                 type="text"
                 name="zipcode"
-                value={prescriber.zipcode || ""}
+                value={prescriber!.zipcode}
                 onChange={handleChange}
                 readOnly={!isEditing}
               ></input>
