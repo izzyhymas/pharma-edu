@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import styles from "./PatientModal.module.css";
 
-interface ModalProps {
-  show: boolean;
-  handleClose: () => void;
+
+interface Patient {
+  id: string;
+  first_name: string;
+  last_name: string;
+  date_of_birth: string;
+  allergies: string;
 }
 
-const PatientModal: React.FC<ModalProps> = ({ show, handleClose }) => {
-  const [patients, setPatients] = useState<any[]>([]);
+interface PatientModalProps {
+  show: boolean;
+  handleClose: () => void;
+  onSelectPatient: (patient: {id: string, name: string, allergies: string}) => void;
+}
+
+const PatientModal: React.FC<PatientModalProps> = ({ show, handleClose, onSelectPatient }) => {
+  const [patients, setPatients] = useState<Patient[]>([]);
   const [filteredPatients, setFilteredPatients] = useState<any[]>([]);
   const [searchParams, setSearchParams] = useState({
     firstName: "",
     lastName: "",
     dateOfBirth: "",
   });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPatients = async () => {
@@ -61,9 +68,13 @@ const PatientModal: React.FC<ModalProps> = ({ show, handleClose }) => {
     }));
   };
 
-  const handlePatientClick = (id: string) => {
+  const handlePatientClick = (patient: Patient) => {
+    onSelectPatient({
+      id: patient.id,
+      name: `${patient.first_name} ${patient.last_name}`,
+      allergies: patient.allergies,
+    });
     handleClose();
-    navigate(`/patient/profile/${id}`);
   };
 
   return (
@@ -114,7 +125,7 @@ const PatientModal: React.FC<ModalProps> = ({ show, handleClose }) => {
               <div
                 key={patient.id}
                 className={styles.patientItem}
-                onClick={() => handlePatientClick(patient.id)}
+                onClick={() => handlePatientClick(patient)}
               >
                 <p>
                   {patient.first_name} {patient.last_name}

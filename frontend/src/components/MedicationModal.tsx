@@ -1,22 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import styles from "./MedicationModal.module.css";
+
+interface Medication {
+  id: string;
+  name: string;
+  ndc: string;
+  strength: string;
+}
 
 interface ModalProps {
   show: boolean;
   handleClose: () => void;
+  onSelectMedication: (medication: {
+    id: string;
+    name: string;
+    ndc: string;
+    strength: string;
+  }) => void;
 }
 
-const MedicationModal: React.FC<ModalProps> = ({ show, handleClose }) => {
+const MedicationModal: React.FC<ModalProps> = ({
+  show,
+  handleClose,
+  onSelectMedication,
+}) => {
   const [medications, setMedications] = useState<any[]>([]);
   const [filteredMedications, setFilteredMedications] = useState<any[]>([]);
   const [searchParams, setSearchParams] = useState({
+    id: "",
     name: "",
     ndc: "",
+    strength: "",
   });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMedications = async () => {
@@ -59,10 +75,16 @@ const MedicationModal: React.FC<ModalProps> = ({ show, handleClose }) => {
     }));
   };
 
-  const handleMedicationClick = (id: string) => {
+  const handleMedicationClick = (medication: Medication) => {
+    onSelectMedication({
+      id: medication.id,
+      name: `${medication.name}`,
+      ndc: medication.ndc,
+      strength: `${medication.strength}`,
+    });
     handleClose();
-    navigate(`/rx-item/profile/${id}`);
   };
+
   return (
     <Modal
       show={show}
@@ -100,7 +122,7 @@ const MedicationModal: React.FC<ModalProps> = ({ show, handleClose }) => {
               <div
                 key={medication.id}
                 className={styles.medicationItem}
-                onClick={() => handleMedicationClick(medication.id)}
+                onClick={() => handleMedicationClick(medication)}
               >
                 <p>{medication.name}</p>
                 <p>{medication.ndc}</p>

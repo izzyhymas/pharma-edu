@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import styles from "./DoctorModal.module.css";
+
+interface Prescriber {
+  id: string;
+  first_name: string;
+  last_name: string;
+  dea: string;
+}
 
 interface ModalProps {
   show: boolean;
   handleClose: () => void;
+  onSelectPrescriber: (prescriber: {
+    id: string;
+    name: string;
+    dea: string;
+  }) => void;
 }
 
-const DoctorModal: React.FC<ModalProps> = ({ show, handleClose }) => {
+const DoctorModal: React.FC<ModalProps> = ({
+  show,
+  handleClose,
+  onSelectPrescriber,
+}) => {
   const [prescribers, setPrescribers] = useState<any[]>([]);
   const [filteredPrescribers, setFilteredPrescribers] = useState<any[]>([]);
   const [searchParams, setSearchParams] = useState({
@@ -16,8 +31,6 @@ const DoctorModal: React.FC<ModalProps> = ({ show, handleClose }) => {
     lastName: "",
     dea: "",
   });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPrescribers = async () => {
@@ -67,9 +80,13 @@ const DoctorModal: React.FC<ModalProps> = ({ show, handleClose }) => {
     }));
   };
 
-  const handlePrescriberClick = (id: string) => {
+  const handlePrescriberClick = (prescriber: Prescriber) => {
+    onSelectPrescriber({
+      id: prescriber.id,
+      name: `${prescriber.first_name} ${prescriber.last_name}`,
+      dea: prescriber.dea,
+    });
     handleClose();
-    navigate(`/prescriber/profile/${id}`);
   };
 
   return (
@@ -118,7 +135,7 @@ const DoctorModal: React.FC<ModalProps> = ({ show, handleClose }) => {
               <div
                 key={prescriber.id}
                 className={styles.prescriberItem}
-                onClick={() => handlePrescriberClick(prescriber.id)}
+                onClick={() => handlePrescriberClick(prescriber)}
               >
                 <p>
                   {prescriber.first_name} {prescriber.last_name}

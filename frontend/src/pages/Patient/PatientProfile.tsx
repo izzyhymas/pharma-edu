@@ -276,6 +276,13 @@ const PatientProfile: React.FC = () => {
                   <hr></hr>
                 </div>
               </div>
+              
+              <div className={styles.patientPrescriptions}>
+                <div className={styles.prescriptionInfo}>
+                  <h3>Prescriptions</h3>
+                  <hr></hr>
+                </div>
+              </div>
               <div className={styles.rxButtonContainer}>
                 <button type="submit">New Rx</button>
               </div>
