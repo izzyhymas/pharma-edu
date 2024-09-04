@@ -1,26 +1,114 @@
 .queueContent {
     padding: 20vh 1rem;
+    min-height: 100vh;
 }
 
-.pageTitle h3{
+.pageTitle h3 {
+    display: flex;
     font-size: 1.5rem;
-    margin: 0;
     font-weight: 800;
-    text-align: left;
+    margin: 0;
 }
 
 .queueContent hr {
     border-top: 3px solid #636466;
     width: 100%;
+    height: 100%;
     margin: 0;
 }
 
 .pendingPrescriptions h3 {
     font-weight: 600;
     font-size: 1.5rem;
-    margin: 1rem 0;
+    padding: 0.5rem;
+    text-align: center;
+    color: #444;
 }
 
-.prescriptionContainer {
-    display: flex;
+.prescriptionTable {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border-radius: 8px;
+    overflow: hidden;
 }
+
+.tableHeader, .tableRow {
+    display: contents;
+}
+
+.tableHeader {
+    font-weight: 800;
+    text-align: center;
+    font-size: large;
+}
+
+.tableHeader div, .tableRow div {
+    padding: 1rem;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+}
+
+.tableRow:last-child div {
+    border-bottom: none;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.actions label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #000;
+}
+
+.checkbox {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    appearance: none;
+    border-radius: 5px;
+    background-color: #2E3F59;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .checkbox:checked {
+    background-color: #4D79A9; /* Background color when checked */
+  }
+  
+  .checkbox::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 12px;
+    width: 10px;
+    transform: translate(-50%, -50%);
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translate(-50%, -50%);
+    opacity: 0;
+    margin-left: -6px;
+  }
+  
+  .checkbox:checked::before {
+    opacity: 1;
+  }
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
