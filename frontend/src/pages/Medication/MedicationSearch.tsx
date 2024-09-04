@@ -65,7 +65,7 @@ const MedicationSearch: React.FC = () => {
 
   // Handles click on the "Add Medication" button and navigates to the Add Medication page
   const handleAddMedicationClick = () => {
-    navigate("/medication/add");
+    navigate("/rx-item/add");
   };
 
   return (

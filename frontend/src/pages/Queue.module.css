@@ -24,13 +24,3 @@
 .prescriptionContainer {
     display: flex;
 }
-
-.prescriptionBox {
-    background-color: #D1D3D4;
-    margin-top: 2em;
-    padding: 1em;
-    width: 25vw;
-    height: 50vh;
-    margin: 3rem;
-    border-radius: 20px;
-}

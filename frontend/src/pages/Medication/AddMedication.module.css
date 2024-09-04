@@ -9,12 +9,6 @@
     font-weight: 800;
   }
   
-  .addMedicationName h3 {
-    margin: 0;
-    font-weight: 600;
-    padding: 0.5rem;
-  }
-  
   .addMedicationProfileContainer {
     display: flex;
     flex-direction: column;
@@ -24,26 +18,21 @@
   .addMedicationInfo {
     display: flex;
     flex-direction: column;
-  }
-  
-  .addMedicationInfo h3 {
-    font-size: 1.5rem;
-    padding: 0.5rem;
+    width: 50%;
   }
   
   .addMedicationInfoFields {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: 2rem;
+    padding-top: 1rem;
   }
   
   .addMedicationInfo label {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.5rem;
     width: 100%;
-    padding: 0.5rem;
+    padding: 0.75rem 1rem;
   }
   
   .addMedicationInfo p {
@@ -52,6 +41,7 @@
     align-items: center;
     width: 25%;
     text-align: left;
+    font-size: large;
   }
   
   .addMedicationInfoFields input {
@@ -66,7 +56,9 @@
   
   .GeneralButtonContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding-top: 2rem;
     gap: 25vw;
   }

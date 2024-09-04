@@ -12,9 +12,6 @@ function Queue() {
         <hr></hr>
       </div>
       <div className={styles.prescriptionContainer}>
-        <div className={styles.prescriptionBox}></div>
-        <div className={styles.prescriptionBox}></div>
-        <div className={styles.prescriptionBox}></div>
       </div>
       <div></div>
     </div>
