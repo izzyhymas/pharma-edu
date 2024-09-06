@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import PrescriptionModal from "../../components/PrescriptionModal";
 
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./PatientProfile.module.css";
 
 interface Patient {
@@ -21,13 +23,36 @@ interface Patient {
   insurance_person_code: string;
 }
 
+interface Prescription {
+  rx_number: number;
+  patient_id: number;
+  prescriber_id: number;
+  prescribed_date: string;
+  directions: string;
+  quantity: number;
+  quantity_dispensed: number;
+  refills: number;
+  status: string;
+  tech_initials: string;
+  rx_item_id: number;
+  medication_name?: string;
+}
+
 const PatientProfile: React.FC = () => {
   // Get patient ID from URL
   const { id } = useParams<{ id: string }>();
   // State to store patient data
   const [patient, setPatient] = useState<Patient>();
+  // State to store prescription data
+  const [prescription, setPrescription] = useState<Prescription[]>([]);
   // State to toggle between editing and viewing modes
   const [isEditing, setIsEditing] = useState(false);
+  // State for prescription modals
+  const [selectedPrescription, setSelectedPrescription] =
+    useState<Prescription | null>(null);
+  const [showPrescriptionModal, setShowPrescriptionModal] = useState(false);
+
+  const navigate = useNavigate();
 
   // Fetch patient data
   useEffect(() => {
@@ -48,7 +73,59 @@ const PatientProfile: React.FC = () => {
     }
   }, [id]);
 
-  // Toggle between editing and saving
+  // Fetch prescriptions data
+  useEffect(() => {
+    const fetchPrescriptions = async () => {
+      try {
+        // Fetch all prescriptions
+        const response = await fetch("http://127.0.0.1:8000/prescriptions");
+        const prescriptionsList = await response.json();
+
+        // Fetch detailed prescription data including medication name
+        const detailedPrescriptions = await Promise.all(
+          prescriptionsList.map(async (prescription: any) => {
+            const prescriptionDetailsResponse = await fetch(
+              `http://127.0.0.1:8000/prescriptions/${prescription.rx_number}`
+            );
+            const prescriptionDetails =
+              await prescriptionDetailsResponse.json();
+
+            // Check if patient_id matches the ID from the URL
+            if (prescriptionDetails.patient_id.toString() === id) {
+              // Fetch medication name using rx_item_id
+              const rxItemResponse = await fetch(
+                `http://127.0.0.1:8000/rx-items/${prescriptionDetails.rx_item_id}`
+              );
+              const rxItemData = await rxItemResponse.json();
+
+              return {
+                ...prescriptionDetails,
+                medication_name: rxItemData.name, // Add medication name
+              };
+            }
+
+            // Return null if patient_id does not match
+            return null;
+          })
+        );
+
+        // Filter out null values
+        const filteredPrescriptions = detailedPrescriptions.filter(
+          (prescription) => prescription !== null
+        );
+
+        // Set the list of filtered prescriptions
+        setPrescription(filteredPrescriptions as Prescription[]);
+      } catch (error) {
+        console.error("Error fetching prescriptions:", error);
+      }
+    };
+
+    if (id) {
+      fetchPrescriptions();
+    }
+  }, [id]);
+
   const handleEditToggle = () => {
     if (isEditing) {
       handleSave();
@@ -78,6 +155,77 @@ const PatientProfile: React.FC = () => {
     setIsEditing(false);
   };
 
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this patient?")) {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/patients/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(patient),
+        });
+        if (response.ok) {
+          alert("Patient deleted successfully!");
+        } else {
+          alert("Failed to delete patient.");
+        }
+      } catch (error) {
+        console.error("Error deleting patient:", error);
+      }
+    }
+  };
+
+  const handleShowModal = (prescription: Prescription) => {
+    setSelectedPrescription(prescription);
+    setShowPrescriptionModal(true);
+  };
+
+  const handleHideModal = () => {
+    setShowPrescriptionModal(false);
+  };
+
+  const handleSavePrescription = async () => {
+    if (selectedPrescription) {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(selectedPrescription),
+        });
+        if (response.ok) {
+          alert("Prescription updated successfully!");
+          setShowPrescriptionModal(false);
+        } else {
+          alert("Failed to update prescription.");
+        }
+      } catch (error) {
+        console.error("Error updating prescription:", error);
+      }
+    }
+  };
+
+  const handleDeletePrescription = async () => {
+    if (selectedPrescription && window.confirm("Are you sure you want to delete this prescription?")) {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`, {
+          method: "DELETE",
+        });
+        if (response.ok) {
+          alert("Prescription deleted successfully!");
+          setPrescription(prev => prev.filter(p => p.rx_number !== selectedPrescription?.rx_number));
+          setShowPrescriptionModal(false);
+        } else {
+          alert("Failed to delete prescription.");
+        }
+      } catch (error) {
+        console.error("Error deleting prescription:", error);
+      }
+    }
+  };
+
   // Handle changes to form fields
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -88,6 +236,10 @@ const PatientProfile: React.FC = () => {
     }));
   };
 
+  const handleNewRxClick = () => {
+    navigate("/new-rx");
+  };
+
   return (
     <div className={styles.patientProfilePage}>
       <div className={styles.patientProfileTitle}>
@@ -95,7 +247,7 @@ const PatientProfile: React.FC = () => {
         <hr></hr>
       </div>
       {patient ? (
-        <>
+        <div>
           <div className={styles.patientName}>
             <h3>
               {patient.first_name} {patient.last_name}
@@ -202,6 +354,12 @@ const PatientProfile: React.FC = () => {
                   <button type="button" onClick={handleEditToggle}>
                     {isEditing ? "Save Information" : "Edit Information"}
                   </button>
+                  <button type="submit" onClick={handleNewRxClick}>
+                    New Rx
+                  </button>
+                  <button type="submit" onClick={handleDelete}>
+                    Delete Patient
+                  </button>
                 </div>
               </div>
             </div>
@@ -276,19 +434,48 @@ const PatientProfile: React.FC = () => {
                   <hr></hr>
                 </div>
               </div>
-              
+
               <div className={styles.patientPrescriptions}>
-                <div className={styles.prescriptionInfo}>
-                  <h3>Prescriptions</h3>
-                  <hr></hr>
+                <h3>Prescriptions</h3>
+                <div className={styles.prescriptionTable}>
+                  <div className={styles.tableHeader}>
+                    <div>Rx Number</div>
+                    <div>Medication</div>
+                    <div>Directions</div>
+                    <div>Quantity</div>
+                    <div>Refills</div>
+                    <div>Status</div>
+                    <div>Prescribed Date</div>
+                  </div>
+                  {prescription.map((prescription) => (
+                    <div
+                      key={prescription.rx_number}
+                      className={styles.tableRow}
+                      onClick={() => handleShowModal(prescription)}
+                    >
+                      <div>{prescription.rx_number}</div>
+                      <div>{prescription.medication_name}</div>
+                      <div>{prescription.directions}</div>
+                      <div>{prescription.quantity}</div>
+                      <div>{prescription.refills}</div>
+                      <div>{prescription.status}</div>
+                      <div>{prescription.prescribed_date}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className={styles.rxButtonContainer}>
-                <button type="submit">New Rx</button>
-              </div>
+              {selectedPrescription && (
+                <PrescriptionModal
+                  show={showPrescriptionModal}
+                  onHide={handleHideModal}
+                  prescription={selectedPrescription}
+                  onSave={handleSavePrescription}
+                  onDelete={handleDeletePrescription}
+                />
+              )}
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <p>Loading patient data...</p>
       )}

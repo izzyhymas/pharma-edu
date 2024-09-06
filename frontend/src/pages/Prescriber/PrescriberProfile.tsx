@@ -77,6 +77,30 @@ const PrescriberProfile: React.FC = () => {
     setIsEditing(false);
   };
 
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this prescriber?")) {
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:8000/prescribers/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(prescriber),
+          }
+        );
+        if (response.ok) {
+          alert("Prescriber deleted successfully!");
+        } else {
+          alert("Failed to update prescriber information.");
+        }
+      } catch (error) {
+        console.error("Error deleting prescriber:", error);
+      }
+    }
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setPrescriber((prev: any) => ({
@@ -94,7 +118,9 @@ const PrescriberProfile: React.FC = () => {
       {prescriber ? (
         <>
           <div className={styles.prescriberName}>
-            <h3>{prescriber.first_name} {prescriber.last_name}</h3>
+            <h3>
+              {prescriber.first_name} {prescriber.last_name}
+            </h3>
             <hr></hr>
           </div>
           <div className={styles.prescriberProfileContainer}>
@@ -203,6 +229,9 @@ const PrescriberProfile: React.FC = () => {
                 <div className={styles.GeneralButtonContainer}>
                   <button type="submit" onClick={handleEditToggle}>
                     {isEditing ? "Save Information" : "Edit Information"}
+                  </button>
+                  <button type="button" onClick={handleDelete}>
+                    Delete Prescriber
                   </button>
                 </div>
               </div>

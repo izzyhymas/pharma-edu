@@ -2,24 +2,38 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import styles from "./PatientModal.module.css";
 
-
-interface Patient {
+export interface Patient {
   id: string;
   first_name: string;
   last_name: string;
   date_of_birth: string;
+}
+
+export interface PatientDetails {
+  id: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  street: string;
+  city: string;
+  state: string;
+  zipcode: string;
   allergies: string;
 }
 
 interface PatientModalProps {
   show: boolean;
   handleClose: () => void;
-  onSelectPatient: (patient: {id: string, name: string, allergies: string}) => void;
+  onSelectPatient: (patient: PatientDetails) => void;
 }
 
-const PatientModal: React.FC<PatientModalProps> = ({ show, handleClose, onSelectPatient }) => {
+const PatientModal: React.FC<PatientModalProps> = ({
+  show,
+  handleClose,
+  onSelectPatient,
+}) => {
   const [patients, setPatients] = useState<Patient[]>([]);
-  const [filteredPatients, setFilteredPatients] = useState<any[]>([]);
+  const [filteredPatients, setFilteredPatients] = useState<Patient[]>([]);
   const [searchParams, setSearchParams] = useState({
     firstName: "",
     lastName: "",
@@ -68,13 +82,28 @@ const PatientModal: React.FC<PatientModalProps> = ({ show, handleClose, onSelect
     }));
   };
 
-  const handlePatientClick = (patient: Patient) => {
-    onSelectPatient({
-      id: patient.id,
-      name: `${patient.first_name} ${patient.last_name}`,
-      allergies: patient.allergies,
-    });
-    handleClose();
+  const handlePatientClick = async (patient: Patient) => {
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/patients/${patient.id}`
+      );
+      const patientDetails = await response.json();
+
+      onSelectPatient({
+        id: patientDetails.id,
+        first_name: patientDetails.first_name,
+        last_name: patientDetails.last_name,
+        phone_number: patientDetails.phone_number,
+        street: patientDetails.street,
+        city: patientDetails.city,
+        state: patientDetails.state,
+        zipcode: patientDetails.zipcode,
+        allergies: patientDetails.allergies,
+      });
+      handleClose();
+    } catch (error) {
+      console.error("Error fetching patient details:", error);
+    }
   };
 
   return (

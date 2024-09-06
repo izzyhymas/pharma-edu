@@ -4,6 +4,7 @@ import styles from "./NewRx.module.css";
 import search from "../assets/magnifying-glass.svg";
 
 import PatientModal from "../components/PatientModal";
+import { PatientDetails } from "../components/PatientModal";
 import DoctorModal from "../components/DoctorModal";
 import MedicationModal from "../components/MedicationModal";
 
@@ -22,6 +23,11 @@ const NewRx: React.FC = () => {
     refills: "",
     tech_initials: "",
     allergies: "",
+    phone_number: "",
+    street: "",
+    city: "",
+    state: "",
+    zipcode: "",
   });
 
   const [showPatientModal, setShowPatientModal] = useState(false);
@@ -47,21 +53,22 @@ const NewRx: React.FC = () => {
     }));
   };
 
-  const handlePatientSelect = (patient: {
-    id: string;
-    name: string;
-    allergies: string;
-  }) => {
+  const handlePatientSelect = (patient: PatientDetails) => {
     setFormData((prevData) => ({
       ...prevData,
       patient_id: patient.id,
-      patient_name: patient.name,
-      allergies: patient.allergies,
+      patient_name: `${patient.first_name} ${patient.last_name}`,
+      phone_number: patient.phone_number,
+      street: patient.street,
+      city: patient.city,
+      state: patient.state,
+      zipcode: patient.zipcode,
+      allergies: patient.allergies
     }));
     handleClosePatientModal(); // Close the modal after selection
   };
 
-  const handlePrescriberSelect = (prescriber: { id: string, name: string }) => {
+  const handlePrescriberSelect = (prescriber: { id: string; name: string }) => {
     setFormData((prevData) => ({
       ...prevData,
       prescriber_id: prescriber.id,
@@ -70,7 +77,7 @@ const NewRx: React.FC = () => {
     handleCloseDoctorModal();
   };
 
-  const handleMedicationSelect = (medication: { id: string, name: string }) => {
+  const handleMedicationSelect = (medication: { id: string; name: string }) => {
     setFormData((prevData) => ({
       ...prevData,
       rx_item_id: medication.id,
@@ -252,18 +259,22 @@ const NewRx: React.FC = () => {
           <div className={styles.printLabel}>
             <h3>Patient Information</h3>
             <hr />
-            <div className={styles.displayPatientInfo}></div>
+            <div className={styles.displayPatientInfo}>
+              <p>Name: {formData.patient_name}</p>
+              <p>Phone Number: {formData.phone_number}</p>
+              <p>Address: {formData.street} {formData.city} {formData.state} {formData.zipcode}</p>
+            </div>
             <hr />
             <h3>Prescription</h3>
             <hr />
 
             <div className={styles.imageBox}></div>
-
-            <div className={styles.labelButton}>
-              <button type="submit">Save</button>
-              <button type="button">Scan Rx</button>
-              <button type="button">Print Label</button>
-            </div>
+              <div className={styles.labelButton}>
+                <button type="submit" className={styles.buttons}>Save</button>
+                <button type="button" className={styles.buttons}>Scan Rx</button>
+                <button type="button" className={styles.buttons}>Print Label</button>
+              </div>
+          <hr></hr>
           </div>
         </div>
       </form>

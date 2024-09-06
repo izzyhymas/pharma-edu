@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Queue.module.css";
 
 interface BasicPrescription {
-  id: string; // Ensure this maps correctly
+  id: string;
   first_name: string;
   last_name: string;
   rx_number: string;
