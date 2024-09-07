@@ -77,7 +77,7 @@ const MedicationSearch: React.FC = () => {
       <div className={styles.medicationSearch}>
         <div className={styles.medicationSearchContainer}>
           <div className={styles.medicationSearchContent}>
-            <h3>Quick Search:</h3>
+            <h3>Medication Lookup</h3>
             <hr></hr>
             <div className={styles.medicationSearchFields}>
               <label>
@@ -118,6 +118,7 @@ const MedicationSearch: React.FC = () => {
                 >
                   <p>{medication.name}</p>
                   <p>{medication.ndc}</p>
+                  <span className={styles.profileIcon}>→</span>
                 </div>
               ))}
             </div>

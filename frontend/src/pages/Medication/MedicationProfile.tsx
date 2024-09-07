@@ -85,7 +85,7 @@ const MedicationProfile: React.FC = () => {
           </div>
           <div className={styles.medicationProfileContainer}>
             <div className={styles.medicationInfo}>
-              <div className={styles.medicationInfoFields}>
+              <div className={`${styles.medicationInfoFields} ${isEditing ? styles.editMode : ""}`}>
                 <label>
                   <p>Medication:</p>
                   <input

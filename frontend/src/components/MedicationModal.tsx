@@ -95,24 +95,27 @@ const MedicationModal: React.FC<ModalProps> = ({
         <Modal.Title>Search</Modal.Title>
       </Modal.Header>
       <Modal.Body className={styles.MedicationModalBody}>
-        <label>
-          <p>Item:</p>
-          <input
-            type="text"
-            name="name"
-            value={searchParams.name}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <label>
-          <p>NDC:</p>
-          <input
-            type="text"
-            name="ndc"
-            value={searchParams.ndc}
-            onChange={handleChange}
-          ></input>
-        </label>
+        <div className={styles.medicationSearchField}>
+          <label>
+            <p>Item:</p>
+            <input
+              type="text"
+              name="name"
+              value={searchParams.name}
+              onChange={handleChange}
+            ></input>
+          </label>
+          <label>
+            <p>NDC:</p>
+            <input
+              type="text"
+              name="ndc"
+              value={searchParams.ndc}
+              onChange={handleChange}
+            ></input>
+          </label>
+          <hr></hr>
+        </div>
 
         <div className={styles.medicationSearchSep}></div>
 
@@ -124,8 +127,11 @@ const MedicationModal: React.FC<ModalProps> = ({
                 className={styles.medicationItem}
                 onClick={() => handleMedicationClick(medication)}
               >
-                <p>{medication.name}</p>
-                <p>{medication.ndc}</p>
+                <div className={styles.medicationDetails}>
+                  <p>{medication.name}</p>
+                  <p>{medication.ndc}</p>
+                  <span className={styles.profileIcon}>→</span>
+                </div>
               </div>
             ))}
           </div>

@@ -188,13 +188,16 @@ const PatientProfile: React.FC = () => {
   const handleSavePrescription = async () => {
     if (selectedPrescription) {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(selectedPrescription),
-        });
+        const response = await fetch(
+          `http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(selectedPrescription),
+          }
+        );
         if (response.ok) {
           alert("Prescription updated successfully!");
           setShowPrescriptionModal(false);
@@ -208,14 +211,22 @@ const PatientProfile: React.FC = () => {
   };
 
   const handleDeletePrescription = async () => {
-    if (selectedPrescription && window.confirm("Are you sure you want to delete this prescription?")) {
+    if (
+      selectedPrescription &&
+      window.confirm("Are you sure you want to delete this prescription?")
+    ) {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`, {
-          method: "DELETE",
-        });
+        const response = await fetch(
+          `http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`,
+          {
+            method: "DELETE",
+          }
+        );
         if (response.ok) {
           alert("Prescription deleted successfully!");
-          setPrescription(prev => prev.filter(p => p.rx_number !== selectedPrescription?.rx_number));
+          setPrescription((prev) =>
+            prev.filter((p) => p.rx_number !== selectedPrescription?.rx_number)
+          );
           setShowPrescriptionModal(false);
         } else {
           alert("Failed to delete prescription.");
@@ -258,7 +269,11 @@ const PatientProfile: React.FC = () => {
             <div className={styles.generalInfo}>
               <h3>General Information</h3>
               <hr></hr>
-              <div className={styles.generalInfoFields}>
+              <div
+                className={`${styles.generalInfoFields} ${
+                  isEditing ? styles.editMode : ""
+                }`}
+              >
                 <label>
                   <p>First Name:</p>
                   <input
@@ -277,6 +292,7 @@ const PatientProfile: React.FC = () => {
                     value={patient.last_name}
                     onChange={handleChange}
                     readOnly={!isEditing}
+                    className={isEditing ? styles.editMode: ""}
                   ></input>
                 </label>
                 <label>
@@ -349,13 +365,9 @@ const PatientProfile: React.FC = () => {
                     readOnly={!isEditing}
                   ></input>
                 </label>
-                <hr></hr>
-                <div className={styles.GeneralButtonContainer}>
+                <div className={styles.rxButtonContainer}>
                   <button type="button" onClick={handleEditToggle}>
                     {isEditing ? "Save Information" : "Edit Information"}
-                  </button>
-                  <button type="submit" onClick={handleNewRxClick}>
-                    New Rx
                   </button>
                   <button type="submit" onClick={handleDelete}>
                     Delete Patient
@@ -370,7 +382,7 @@ const PatientProfile: React.FC = () => {
               <div className={styles.insuranceInfo}>
                 <h3>Insurance Information</h3>
                 <hr></hr>
-                <div className={styles.insuranceInfoFields}>
+                <div className={`${styles.insuranceInfoFields} ${isEditing ? styles.editMode : ""}`}>
                   <label>
                     <p>Insurance:</p>
                     <input
@@ -435,35 +447,49 @@ const PatientProfile: React.FC = () => {
                 </div>
               </div>
 
-              <div className={styles.patientPrescriptions}>
-                <h3>Prescriptions</h3>
-                <div className={styles.prescriptionTable}>
-                  <div className={styles.tableHeader}>
-                    <div>Rx Number</div>
-                    <div>Medication</div>
-                    <div>Directions</div>
-                    <div>Quantity</div>
-                    <div>Refills</div>
-                    <div>Status</div>
-                    <div>Prescribed Date</div>
-                  </div>
-                  {prescription.map((prescription) => (
-                    <div
-                      key={prescription.rx_number}
-                      className={styles.tableRow}
-                      onClick={() => handleShowModal(prescription)}
-                    >
-                      <div>{prescription.rx_number}</div>
-                      <div>{prescription.medication_name}</div>
-                      <div>{prescription.directions}</div>
-                      <div>{prescription.quantity}</div>
-                      <div>{prescription.refills}</div>
-                      <div>{prescription.status}</div>
-                      <div>{prescription.prescribed_date}</div>
-                    </div>
-                  ))}
+              <section className={styles.patientPrescriptions}>
+                <header className={styles.prescriptionsHeader}>
+                  <h3>Prescriptions</h3>
+                </header>
+                <div className={styles.tableContainer}>
+                  <table className={styles.prescriptionTable}>
+                    <thead>
+                      <tr>
+                        <th>Rx Number</th>
+                        <th>Medication</th>
+                        <th>Directions</th>
+                        <th>Quantity</th>
+                        <th>Refills</th>
+                        <th>Status</th>
+                        <th>Prescribed Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {prescription.map((prescription) => (
+                        <tr
+                          key={prescription.rx_number}
+                          className={styles.tableRow}
+                          onClick={() => handleShowModal(prescription)}
+                        >
+                          <td>{prescription.rx_number}</td>
+                          <td>{prescription.medication_name}</td>
+                          <td>{prescription.directions}</td>
+                          <td>{prescription.quantity}</td>
+                          <td>{prescription.refills}</td>
+                          <td>{prescription.status}</td>
+                          <td>{prescription.prescribed_date}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-              </div>
+
+                <div className={styles.newRxButton}>
+                  <button type="submit" onClick={handleNewRxClick}>
+                    New Rx
+                  </button>
+                </div>
+              </section>
               {selectedPrescription && (
                 <PrescriptionModal
                   show={showPrescriptionModal}

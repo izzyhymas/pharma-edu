@@ -145,6 +145,12 @@
   border-bottom: 1px solid #ddd;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.patientItem:hover {
+  background-color: #f0f0f0;
 }
 
 .patientItem p:first-of-type {
@@ -157,6 +163,13 @@
   color: #666;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.profileIcon {
+  float: right;
+  font-size: 1.2em;
+  color: #2E3F59;
+  margin-left: 0;
 }
 
 .patientSearchButton {

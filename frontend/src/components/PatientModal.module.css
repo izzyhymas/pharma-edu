@@ -1,40 +1,101 @@
 .PatientModalContent {
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
 }
 
 .PatientModalHeader {
   font-weight: 800;
+  background-color: #4d79a9;
+  color: #ffffff;
 }
 
-.PatientModalBody label {
+.PatientModalBody {
   display: flex;
   flex-direction: column;
 }
 
+.PatientModalBody label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 .PatientModalBody p {
   font-weight: 600;
+  margin: 0;
+  width: 30%;
 }
 
 .PatientModalBody input {
-  padding: 0.5rem;
-  padding-bottom: 0.5rem;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
+  background-color: #d1d3d4;
+  color: #000000;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 0.75rem;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.PatientModalBody .dateIcon {
+  position: relative;
+  width: 60%;
+}
+
+.PatientModalBody .dateIcon input[type="date"] {
   width: 100%;
-  box-sizing: border-box;
+  padding-right: 30px;
+  border: 1px solid #ccc;
 }
 
-.PatientSelectButton {
+.PatientModalBody .dateIcon input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.PatientModalBody .dateIcon::before {
+  content: "";
+  position: absolute;
+  right: 9.5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25px;
+  height: 25px;
   background-color: #4d79a9;
-  border: none;
-  color: #fff;
-  padding: 0.5rem 1rem;
   border-radius: 5px;
-  cursor: pointer;
+  pointer-events: none;
 }
 
-.PatientSelectButton:hover {
-  background-color: #416892;
+.patientSearchField {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.patientDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.patientItem {
+  cursor: pointer;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.patientItem:hover {
+  background-color: #e0e0e0;
+}
+
+.patientDetials {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

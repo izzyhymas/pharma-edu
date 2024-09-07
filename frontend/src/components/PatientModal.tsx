@@ -113,7 +113,7 @@ const PatientModal: React.FC<PatientModalProps> = ({
       className={styles.PatientModalContent}
     >
       <Modal.Header closeButton className={styles.PatientModalHeader}>
-        <Modal.Title>Patient Search</Modal.Title>
+        <Modal.Title>Patient Lookup</Modal.Title>
       </Modal.Header>
       <Modal.Body className={styles.PatientModalBody}>
         <div className={styles.patientSeachField}>
@@ -137,13 +137,16 @@ const PatientModal: React.FC<PatientModalProps> = ({
           </label>
           <label>
             <p>DOB:</p>
-            <input
-              type="date"
-              name="dateOfBirth"
-              value={searchParams.dateOfBirth}
-              onChange={handleChange}
-            ></input>
+            <div className={styles.dateIcon}>
+              <input
+                type="date"
+                name="dateOfBirth"
+                value={searchParams.dateOfBirth}
+                onChange={handleChange}
+              ></input>
+            </div>
           </label>
+          <hr></hr>
         </div>
 
         <div className={styles.patientSearchSep}></div>
@@ -156,10 +159,13 @@ const PatientModal: React.FC<PatientModalProps> = ({
                 className={styles.patientItem}
                 onClick={() => handlePatientClick(patient)}
               >
-                <p>
-                  {patient.first_name} {patient.last_name}
-                </p>
-                <p>{patient.date_of_birth}</p>
+                <div className={styles.patientDetials}>
+                  <p className={styles.patientName}>
+                    {patient.first_name} {patient.last_name}
+                  </p>
+                  <p className={styles.patientDOB}>{patient.date_of_birth}</p>
+                  <span className={styles.profileIcon}>→</span>
+                </div>
               </div>
             ))}
           </div>

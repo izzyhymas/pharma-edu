@@ -5,7 +5,7 @@ import search from "../assets/magnifying-glass.svg";
 
 import PatientModal from "../components/PatientModal";
 import { PatientDetails } from "../components/PatientModal";
-import DoctorModal from "../components/DoctorModal";
+import PrescriberModal from "../components/PrescriberModal";
 import MedicationModal from "../components/MedicationModal";
 
 const NewRx: React.FC = () => {
@@ -31,14 +31,14 @@ const NewRx: React.FC = () => {
   });
 
   const [showPatientModal, setShowPatientModal] = useState(false);
-  const [showDoctorModal, setShowDoctorModal] = useState(false);
+  const [showPrescriberModal, setShowPrescriberModal] = useState(false);
   const [showMedicationModal, setShowMedicationModal] = useState(false);
 
   const handleShowPatientModal = () => setShowPatientModal(true);
   const handleClosePatientModal = () => setShowPatientModal(false);
 
-  const handleShowDoctorModal = () => setShowDoctorModal(true);
-  const handleCloseDoctorModal = () => setShowDoctorModal(false);
+  const handleShowPrescriberModal = () => setShowPrescriberModal(true);
+  const handleClosePrescriberModal = () => setShowPrescriberModal(false);
 
   const handleShowMedicationModal = () => setShowMedicationModal(true);
   const handleCloseMedicationModal = () => setShowMedicationModal(false);
@@ -74,7 +74,7 @@ const NewRx: React.FC = () => {
       prescriber_id: prescriber.id,
       prescriber_name: prescriber.name,
     }));
-    handleCloseDoctorModal();
+    handleClosePrescriberModal();
   };
 
   const handleMedicationSelect = (medication: { id: string; name: string }) => {
@@ -160,7 +160,7 @@ const NewRx: React.FC = () => {
                   <img
                     src={search}
                     alt="search-icon"
-                    onClick={handleShowDoctorModal}
+                    onClick={handleShowPrescriberModal}
                   ></img>
                 </div>
               </label>
@@ -270,9 +270,9 @@ const NewRx: React.FC = () => {
 
             <div className={styles.imageBox}></div>
               <div className={styles.labelButton}>
-                <button type="submit" className={styles.buttons}>Save</button>
-                <button type="button" className={styles.buttons}>Scan Rx</button>
-                <button type="button" className={styles.buttons}>Print Label</button>
+                <button type="submit">Save</button>
+                <button type="button">Scan Rx</button>
+                <button type="button">Print Label</button>
               </div>
           <hr></hr>
           </div>
@@ -283,9 +283,9 @@ const NewRx: React.FC = () => {
         handleClose={handleClosePatientModal}
         onSelectPatient={handlePatientSelect}
       />
-      <DoctorModal
-        show={showDoctorModal}
-        handleClose={handleCloseDoctorModal}
+      <PrescriberModal
+        show={showPrescriberModal}
+        handleClose={handleClosePrescriberModal}
         onSelectPrescriber={handlePrescriberSelect}
       />
       <MedicationModal

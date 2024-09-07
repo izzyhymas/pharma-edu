@@ -125,7 +125,11 @@ const PrescriberProfile: React.FC = () => {
           </div>
           <div className={styles.prescriberProfileContainer}>
             <div className={styles.prescriberInfo}>
-              <div className={styles.prescriberInfoFields}>
+              <div
+                className={`${styles.prescriberInfoFields} ${
+                  isEditing ? styles.editMode : ""
+                }`}
+              >
                 <label>
                   <p>First Name:</p>
                   <input

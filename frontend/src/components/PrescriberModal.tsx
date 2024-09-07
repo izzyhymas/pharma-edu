@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import styles from "./DoctorModal.module.css";
+import styles from "./PrescriberModal.module.css";
 
 interface Prescriber {
   id: string;
@@ -19,7 +19,7 @@ interface ModalProps {
   }) => void;
 }
 
-const DoctorModal: React.FC<ModalProps> = ({
+const PrescriberModal: React.FC<ModalProps> = ({
   show,
   handleClose,
   onSelectPrescriber,
@@ -93,39 +93,42 @@ const DoctorModal: React.FC<ModalProps> = ({
     <Modal
       show={show}
       onHide={handleClose}
-      className={styles.DoctorModalContent}
+      className={styles.PrescriberModalContent}
     >
-      <Modal.Header closeButton className={styles.DoctorModalHeader}>
-        <Modal.Title>Prescriber Search</Modal.Title>
+      <Modal.Header closeButton className={styles.PrescriberModalHeader}>
+        <Modal.Title>Prescriber Lookup</Modal.Title>
       </Modal.Header>
-      <Modal.Body className={styles.DoctorModalBody}>
-        <label>
-          <p>First Name:</p>
-          <input
-            type="text"
-            name="firstName"
-            value={searchParams.firstName}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <label>
-          <p>Last Name:</p>
-          <input
-            type="text"
-            name="lastName"
-            value={searchParams.lastName}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <label>
-          <p>DEA:</p>
-          <input
-            type="text"
-            name="dea"
-            value={searchParams.dea}
-            onChange={handleChange}
-          ></input>
-        </label>
+      <Modal.Body className={styles.PrescriberModalBody}>
+        <div className={styles.prescriberSearchField}>
+          <label>
+            <p>First Name:</p>
+            <input
+              type="text"
+              name="firstName"
+              value={searchParams.firstName}
+              onChange={handleChange}
+            ></input>
+          </label>
+          <label>
+            <p>Last Name:</p>
+            <input
+              type="text"
+              name="lastName"
+              value={searchParams.lastName}
+              onChange={handleChange}
+            ></input>
+          </label>
+          <label>
+            <p>DEA:</p>
+            <input
+              type="text"
+              name="dea"
+              value={searchParams.dea}
+              onChange={handleChange}
+            ></input>
+          </label>
+          <hr></hr>
+        </div>
 
         <div className={styles.prescriberSearchSep}></div>
 
@@ -137,10 +140,13 @@ const DoctorModal: React.FC<ModalProps> = ({
                 className={styles.prescriberItem}
                 onClick={() => handlePrescriberClick(prescriber)}
               >
-                <p>
-                  {prescriber.first_name} {prescriber.last_name}
-                </p>
-                <p>{prescriber.dea}</p>
+                <div className={styles.prescriberDetails}>
+                  <p>
+                    {prescriber.first_name} {prescriber.last_name}
+                  </p>
+                  <p>{prescriber.dea}</p>
+                  <span className={styles.profileIcon}>→</span>
+                </div>
               </div>
             ))}
           </div>
@@ -150,4 +156,4 @@ const DoctorModal: React.FC<ModalProps> = ({
   );
 };
 
-export default DoctorModal;
+export default PrescriberModal;

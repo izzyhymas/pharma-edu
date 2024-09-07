@@ -64,7 +64,7 @@ const fetchPrescriptionDetails = async (rx_number: string): Promise<DetailedPres
 
 const Queue: React.FC = () => {
   const [queue, setQueue] = useState<DetailedPrescription[]>([]);
-  const [statusFlags, setStatusFlags] = useState<Record<string, { filled: boolean; printed: boolean; pickedUp: boolean }>>({});
+  const [statusFlags, setStatusFlags] = useState<Record<string, { filled: boolean; printed: boolean; received: boolean }>>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -84,11 +84,11 @@ const Queue: React.FC = () => {
             acc[item.rx_number] = {
               filled: false,
               printed: false,
-              pickedUp: false,
+              received: false,
             };
           }
           return acc;
-        }, {} as Record<string, { filled: boolean; printed: boolean; pickedUp: boolean }>);
+        }, {} as Record<string, { filled: boolean; printed: boolean; received: boolean }>);
 
         setStatusFlags(initialStatusFlags);
       } catch (error) {
@@ -109,7 +109,7 @@ const Queue: React.FC = () => {
         },
       };
 
-      const allStatusesChecked = updatedFlags[rx_number]?.filled && updatedFlags[rx_number]?.printed && updatedFlags[rx_number]?.pickedUp;
+      const allStatusesChecked = updatedFlags[rx_number]?.filled && updatedFlags[rx_number]?.printed && updatedFlags[rx_number]?.received;
 
       if (allStatusesChecked) {
         setQueue((prevQueue) => prevQueue.filter((item) => item.rx_number !== rx_number));
@@ -129,12 +129,12 @@ const Queue: React.FC = () => {
         <h3>Pending Prescriptions</h3>
         <hr />
         <div className={styles.prescriptionTable}>
-          <div className={styles.tableHeader}><div>Rx Number</div></div>
-          <div className={styles.tableHeader}><div>Patient Name</div></div>
-          <div className={styles.tableHeader}><div>Medication Name</div></div>
-          <div className={styles.tableHeader}><div>Quantity</div></div>
-          <div className={styles.tableHeader}><div>Status</div></div>
-          <div className={styles.tableHeader}><div>Actions</div></div>
+          <div className={styles.tableHeader}><p>Rx Number</p></div>
+          <div className={styles.tableHeader}><p>Patient Name</p></div>
+          <div className={styles.tableHeader}><p>Medication Name</p></div>
+          <div className={styles.tableHeader}><p>Quantity</p></div>
+          <div className={styles.tableHeader}><p>Status</p></div>
+          <div className={styles.tableHeader}><p>Actions</p></div>
           {queue.length > 0 ? (
             queue.map((prescription) => (
               <div key={prescription.rx_number} className={styles.tableRow}>
@@ -166,10 +166,10 @@ const Queue: React.FC = () => {
                     <input 
                       type="checkbox"
                       className={styles.checkbox}
-                      checked={statusFlags[prescription.rx_number]?.pickedUp || false}
-                      onChange={(e) => handleStatusChange(prescription.rx_number, 'pickedUp', e.target.checked)}
+                      checked={statusFlags[prescription.rx_number]?.received || false}
+                      onChange={(e) => handleStatusChange(prescription.rx_number, 'received', e.target.checked)}
                     />
-                    Picked Up
+                    Received
                   </label>
                 </div>
               </div>

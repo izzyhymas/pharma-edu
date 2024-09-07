@@ -18,15 +18,24 @@
 .medicationProfileContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+  gap: 2rem;
+  margin-top: 1rem;
+  max-width: 1200px;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .medicationInfo {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  gap: 1rem;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .medicationInfo h3 {
@@ -37,13 +46,17 @@
 .medicationInfoFields {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .medicationInfo label {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 1rem;
-  width: 100%;
+  width: 50%;
   padding: 0.5rem;
 }
 
@@ -56,7 +69,7 @@
 }
 
 .medicationInfoFields input {
-  background-color: #d1d3d4;
+  background-color: #ffffff;
   color: #000000;
   border: none;
   padding: 0.5rem;
@@ -65,9 +78,15 @@
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
+.editMode input {
+  background-color: #edecec;
+}
+
 .GeneralButtonContainer {
   display: flex;
-  padding: 1rem;
+  padding-top: 2rem;
+  justify-content: center;
+  width: 100%;
 }
 
 .GeneralButtonContainer button {

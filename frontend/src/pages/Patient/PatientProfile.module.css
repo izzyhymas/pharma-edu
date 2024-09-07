@@ -21,6 +21,7 @@
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
+  height: 100vh;
 }
 
 .generalInfo {
@@ -65,6 +66,10 @@
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
+.editMode input {
+  background-color: #e2e4e5;
+}
+
 .searchImg {
   position: relative;
   width: 50%;
@@ -86,12 +91,16 @@
   border-radius: 5px;
 }
 
-.GeneralButtonContainer {
+.rxButtonContainer {
   display: flex;
-  padding-top: 1rem;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 0.5rem;
 }
 
-.GeneralButtonContainer button {
+.rxButtonContainer button {
   background-color: #4d79a9;
   color: #ffffff;
   border: none;
@@ -104,7 +113,7 @@
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.GeneralButtonContainer button:hover {
+.rxButtonContainer button:hover {
   background-color: #416892;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -117,6 +126,8 @@
   margin: 0;
   position: absolute;
   left: 50%;
+  top: 0;
+  bottom: 0;
 }
 
 .insuranceAndPrescriptions {
@@ -161,56 +172,18 @@
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
-.prescriptions {
-  margin-top: 1rem;
-  max-width: 50vw;
-  margin-left: auto;
-  margin-right: auto;
+.editMode input {
+  background-color: #e2e4e5;
 }
 
-.prescriptions h3 {
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  text-align: center;
-}
-
-.prescriptionTable {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  overflow: hidden;
-  margin-top: 1rem;
-}
-
-.tableHeader {
-  display: contents;
-  font-weight: 800;
-  text-align: center;
-  font-size: small;
-}
-
-.tableHeader div {
-  padding: 0.5rem;
-  text-align: center;
-  background-color: #d3d4d5;
-}
-
-.tableRow {
-  display: contents;
-}
-
-.tableRow div {
-  padding: 0.5rem;
-  text-align: center;
-  font-size: small;
-}
-
-.rxButtonContainer {
+.newRxButton {
   display: flex;
-  padding-top: 1rem;
-  padding-left: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.rxButtonContainer button {
+.newRxButton button {
   background-color: #4d79a9;
   color: #ffffff;
   border: none;
@@ -223,7 +196,43 @@
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.rxButtonContainer button:hover {
-  background-color: #416892;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.prescriptionsHeader h3 {
+  padding: 0.5rem;
+}
+
+.tableContainer {
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
+  border-collapse: separate;
+  border: 3px solid #d1d3d4;
+}
+
+.tableContainer table {
+  width: 100%;
+  border-spacing: 0;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tableContainer th,
+.tableContainer td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tableContainer th {
+  background-color: #4d79a9;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.tableContainer tr:hover {
+  background-color: #f0f0f0;
 }

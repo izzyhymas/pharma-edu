@@ -82,7 +82,7 @@ const PatientSearch: React.FC = () => {
       <div className={styles.patientSearch}>
         <div className={styles.patientSearchContainer}>
           <div className={styles.patientSearchContent}>
-            <h3>Patient</h3>
+            <h3>Patient Lookup</h3>
             <hr></hr>
             <div className={styles.patientSearchFields}>
               <label>
@@ -136,6 +136,7 @@ const PatientSearch: React.FC = () => {
                     {patient.first_name} {patient.last_name}
                   </p>
                   <p>{patient.date_of_birth}</p>
+                  <span className={styles.profileIcon}>→</span>
                 </div>
               ))}
             </div>

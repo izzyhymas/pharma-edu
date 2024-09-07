@@ -144,7 +144,14 @@
   border-bottom: 1px solid #ddd;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+.prescriberItem:hover {
+  background-color: #f0f0f0;
+}
+
 
 .prescriberItem p:first-of-type {
   font-size: 1rem;

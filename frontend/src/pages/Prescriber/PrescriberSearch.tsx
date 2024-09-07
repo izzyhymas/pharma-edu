@@ -89,7 +89,7 @@ const PrescriberSearch: React.FC = () => {
       <div className={styles.prescriberSearch}>
         <div className={styles.prescriberSearchContainer}>
           <div className={styles.prescriberSearchContent}>
-            <h3>Prescriber:</h3>
+            <h3>Prescriber Lookup</h3>
             <hr></hr>
             <div className={styles.prescriberSearchFields}>
               <label>
@@ -141,6 +141,7 @@ const PrescriberSearch: React.FC = () => {
                     {prescriber.first_name} {prescriber.last_name}
                   </p>
                   <p>{prescriber.dea}</p>
+                  <span className={styles.profileIcon}>→</span>
                 </div>
               ))}
             </div>

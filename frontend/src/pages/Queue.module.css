@@ -22,14 +22,12 @@
     font-size: 1.5rem;
     padding: 0.5rem;
     text-align: center;
-    color: #444;
 }
 
 .prescriptionTable {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 0;
-    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -43,10 +41,19 @@
     font-size: large;
 }
 
-.tableHeader div, .tableRow div {
+.tableHeader p {
     padding: 1rem;
     border-bottom: 2px solid #ddd;
     text-align: center;
+}
+
+.tableRow div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #ddd;
+    border-bottom: 2px solid #636466;
 }
 
 .tableRow:last-child div {
@@ -72,7 +79,7 @@
 
 .checkbox {
     position: relative;
-    width: 24px;
+    width: 25px;
     height: 24px;
     appearance: none;
     border-radius: 5px;
