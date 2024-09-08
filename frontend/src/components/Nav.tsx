@@ -2,7 +2,7 @@ import NavItem from "./NavItem";
 import routes from "../routes";
 import styles from "./Nav.module.css";
 import logo from "../assets/DixieTechLogo_Artboard-07.png";
-import profile from "../assets/user-circle.svg";
+import profile from "../assets/user (2).png"
 
 function Nav() {
   return (

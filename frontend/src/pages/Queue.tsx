@@ -127,7 +127,6 @@ const Queue: React.FC = () => {
       </div>
       <div className={styles.pendingPrescriptions}>
         <h3>Pending Prescriptions</h3>
-        <hr />
         <div className={styles.prescriptionTable}>
           <div className={styles.tableHeader}><p>Rx Number</p></div>
           <div className={styles.tableHeader}><p>Patient Name</p></div>

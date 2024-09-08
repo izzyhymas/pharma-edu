@@ -93,12 +93,12 @@ const AddPatient: React.FC = () => {
               </label>
               <label>
                 <p>Phone Number:</p>
-                  <input
-                    type="text"
-                    name="phone_number"
-                    value={formData.phone_number}
-                    onChange={handleChange}
-                  ></input>
+                <input
+                  type="text"
+                  name="phone_number"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                ></input>
               </label>
               <label>
                 <p>Street:</p>
@@ -145,10 +145,9 @@ const AddPatient: React.FC = () => {
                   onChange={handleChange}
                 ></input>
               </label>
+              <hr />
             </div>
           </div>
-
-          <div className={styles.addPatientSep}></div>
 
           <div className={styles.addPatientInsurance}>
             <div className={styles.patientInsurance}>
@@ -211,10 +210,11 @@ const AddPatient: React.FC = () => {
                 </label>
               </div>
             </div>
+            <div className={styles.addPatientButton}>
+              <button type="submit">Save Information</button>
+            </div>
+            <hr/>
           </div>
-        </div>
-        <div className={styles.addPatientButton}>
-          <button type="submit">Save Information</button>
         </div>
       </form>
     </div>

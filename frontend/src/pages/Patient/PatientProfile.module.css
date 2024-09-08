@@ -120,7 +120,7 @@
 
 .patientProfileSep {
   width: 3px;
-  height: 100%;
+  height: 90%;
   align-self: stretch;
   background-color: #d3d4d5;
   margin: 0;
@@ -178,9 +178,8 @@
 
 .newRxButton {
   display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .newRxButton button {
@@ -194,6 +193,13 @@
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.prescriptionsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
 }
 
 .prescriptionsHeader h3 {

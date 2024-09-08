@@ -92,12 +92,12 @@ const MedicationModal: React.FC<ModalProps> = ({
       className={styles.MedicationModalContent}
     >
       <Modal.Header closeButton className={styles.MedicationModalHeader}>
-        <Modal.Title>Search</Modal.Title>
+        <Modal.Title>Medication Lookup</Modal.Title>
       </Modal.Header>
       <Modal.Body className={styles.MedicationModalBody}>
         <div className={styles.medicationSearchField}>
           <label>
-            <p>Item:</p>
+            <p>Medication:</p>
             <input
               type="text"
               name="name"

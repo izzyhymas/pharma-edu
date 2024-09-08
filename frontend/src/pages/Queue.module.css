@@ -29,6 +29,9 @@
     grid-template-columns: repeat(6, 1fr);
     gap: 0;
     overflow: hidden;
+    max-height: 600px;
+    overflow-y: auto;
+    border: 3px solid #ccc;
 }
 
 .tableHeader, .tableRow {
@@ -43,8 +46,12 @@
 
 .tableHeader p {
     padding: 1rem;
-    border-bottom: 2px solid #ddd;
     text-align: center;
+    background-color: #4D79A9;
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .tableRow div{
@@ -52,8 +59,7 @@
     justify-content: center;
     align-items: center;
     padding: 0.5rem;
-    background-color: #ddd;
-    border-bottom: 2px solid #636466;
+    border-bottom: 1px solid #ccc;
 }
 
 .tableRow:last-child div {
@@ -83,7 +89,7 @@
     height: 24px;
     appearance: none;
     border-radius: 5px;
-    background-color: #2E3F59;
+    background-color: #4D79A9;
     cursor: pointer;
     margin: 0;
     padding: 0;

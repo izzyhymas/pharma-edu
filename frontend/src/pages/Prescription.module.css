@@ -10,13 +10,6 @@
   margin: 0;
 }
 
-
-/* I commented this out, if you call hr directly in more than one css file it can override hr in other css files. */
-/* hr {
-  margin: 0;
-  border-top: 3px solid #636466;
-} */
-
 .patientPrescriptionContainer {
   display: flex;
   flex-direction: row;

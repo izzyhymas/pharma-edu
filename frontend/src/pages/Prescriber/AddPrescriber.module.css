@@ -11,28 +11,42 @@
 
 .addPrescriberContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  gap: 2rem;
+  margin-top: 1rem;
+  max-width: 1200px;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .addPrescriberInfo {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  gap: 1rem;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .addPrescriberInfoFields {
   display: flex;
   flex-direction: column;
-  margin: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .addPrescriberInfo label {
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.75rem 1rem;
+  align-items: center;
+  gap: 1rem;
+  width: 50%;
+  padding: 0.5rem;
 }
 
 .addPrescriberInfo p {
@@ -41,16 +55,15 @@
   align-items: center;
   width: 25%;
   text-align: left;
-  font-size: large;
 }
 
 .addPrescriberInfoFields input {
-  background-color: #d1d3d4;
+  background-color: #ffffff;
   color: #000000;
   border: none;
   padding: 0.5rem;
   border-radius: 10px;
-  width: 50%;
+  width: 60%;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -60,7 +73,6 @@
   justify-content: center;
   align-items: center;
   padding-top: 2rem;
-  gap: 25vw;
 }
 
 .GeneralButtonContainer button {

@@ -21,21 +21,27 @@ interface Patient {
   insurance_rx_bin: string;
   insurance_rx_pcn: string;
   insurance_person_code: string;
+  prescriptions: Prescription[];
 }
 
 interface Prescription {
   rx_number: number;
-  patient_id: number;
   prescriber_id: number;
+  prescriber_first_name: string;
+  prescriber_last_name: string;
+  prescriber_type: string;
   prescribed_date: string;
-  directions: string;
+  prescription_status: string;
+  rx_item_name: string;
+  rx_item_strength: string;
   quantity: number;
-  quantity_dispensed: number;
   refills: number;
+  directions: string;
+  patient_id: number;
+  rx_item_id: number;
+  quantity_dispensed: number;
   status: string;
   tech_initials: string;
-  rx_item_id: number;
-  medication_name?: string;
 }
 
 const PatientProfile: React.FC = () => {
@@ -43,8 +49,6 @@ const PatientProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   // State to store patient data
   const [patient, setPatient] = useState<Patient>();
-  // State to store prescription data
-  const [prescription, setPrescription] = useState<Prescription[]>([]);
   // State to toggle between editing and viewing modes
   const [isEditing, setIsEditing] = useState(false);
   // State for prescription modals
@@ -70,59 +74,6 @@ const PatientProfile: React.FC = () => {
     if (id) {
       // Fetch patient data if ID is available
       fetchPatient();
-    }
-  }, [id]);
-
-  // Fetch prescriptions data
-  useEffect(() => {
-    const fetchPrescriptions = async () => {
-      try {
-        // Fetch all prescriptions
-        const response = await fetch("http://127.0.0.1:8000/prescriptions");
-        const prescriptionsList = await response.json();
-
-        // Fetch detailed prescription data including medication name
-        const detailedPrescriptions = await Promise.all(
-          prescriptionsList.map(async (prescription: any) => {
-            const prescriptionDetailsResponse = await fetch(
-              `http://127.0.0.1:8000/prescriptions/${prescription.rx_number}`
-            );
-            const prescriptionDetails =
-              await prescriptionDetailsResponse.json();
-
-            // Check if patient_id matches the ID from the URL
-            if (prescriptionDetails.patient_id.toString() === id) {
-              // Fetch medication name using rx_item_id
-              const rxItemResponse = await fetch(
-                `http://127.0.0.1:8000/rx-items/${prescriptionDetails.rx_item_id}`
-              );
-              const rxItemData = await rxItemResponse.json();
-
-              return {
-                ...prescriptionDetails,
-                medication_name: rxItemData.name, // Add medication name
-              };
-            }
-
-            // Return null if patient_id does not match
-            return null;
-          })
-        );
-
-        // Filter out null values
-        const filteredPrescriptions = detailedPrescriptions.filter(
-          (prescription) => prescription !== null
-        );
-
-        // Set the list of filtered prescriptions
-        setPrescription(filteredPrescriptions as Prescription[]);
-      } catch (error) {
-        console.error("Error fetching prescriptions:", error);
-      }
-    };
-
-    if (id) {
-      fetchPrescriptions();
     }
   }, [id]);
 
@@ -167,6 +118,7 @@ const PatientProfile: React.FC = () => {
         });
         if (response.ok) {
           alert("Patient deleted successfully!");
+          navigate("/patient/search");
         } else {
           alert("Failed to delete patient.");
         }
@@ -187,6 +139,20 @@ const PatientProfile: React.FC = () => {
 
   const handleSavePrescription = async () => {
     if (selectedPrescription) {
+      const payload = {
+        patient_id: selectedPrescription.patient_id,
+        prescriber_id: selectedPrescription.prescriber_id,
+        prescribed_date: selectedPrescription.prescribed_date,
+        rx_item_id: selectedPrescription.rx_item_id,
+        directions: selectedPrescription.directions,
+        quantity: selectedPrescription.quantity,
+        quantity_dispensed: selectedPrescription.quantity_dispensed,
+        refills: selectedPrescription.refills,
+        status: selectedPrescription.status,
+        tech_initials: selectedPrescription.tech_initials,
+      };
+      console.log("Payload:", payload);
+  
       try {
         const response = await fetch(
           `http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`,
@@ -195,10 +161,11 @@ const PatientProfile: React.FC = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(selectedPrescription),
+            body: JSON.stringify(payload),
           }
         );
         if (response.ok) {
+          // Handle success
           alert("Prescription updated successfully!");
           setShowPrescriptionModal(false);
         } else {
@@ -224,9 +191,12 @@ const PatientProfile: React.FC = () => {
         );
         if (response.ok) {
           alert("Prescription deleted successfully!");
-          setPrescription((prev) =>
-            prev.filter((p) => p.rx_number !== selectedPrescription?.rx_number)
-          );
+          setPatient((prev) => ({
+            ...prev!,
+            prescriptions: prev!.prescriptions.filter(
+              (p) => p.rx_number !== selectedPrescription.rx_number
+            ),
+          }));
           setShowPrescriptionModal(false);
         } else {
           alert("Failed to delete prescription.");
@@ -292,7 +262,7 @@ const PatientProfile: React.FC = () => {
                     value={patient.last_name}
                     onChange={handleChange}
                     readOnly={!isEditing}
-                    className={isEditing ? styles.editMode: ""}
+                    className={isEditing ? styles.editMode : ""}
                   ></input>
                 </label>
                 <label>
@@ -382,7 +352,11 @@ const PatientProfile: React.FC = () => {
               <div className={styles.insuranceInfo}>
                 <h3>Insurance Information</h3>
                 <hr></hr>
-                <div className={`${styles.insuranceInfoFields} ${isEditing ? styles.editMode : ""}`}>
+                <div
+                  className={`${styles.insuranceInfoFields} ${
+                    isEditing ? styles.editMode : ""
+                  }`}
+                >
                   <label>
                     <p>Insurance:</p>
                     <input
@@ -450,45 +424,45 @@ const PatientProfile: React.FC = () => {
               <section className={styles.patientPrescriptions}>
                 <header className={styles.prescriptionsHeader}>
                   <h3>Prescriptions</h3>
+                <div className={styles.newRxButton}>
+                  <button type="submit" onClick={handleNewRxClick}>
+                    New Rx
+                  </button>
+                </div>
                 </header>
                 <div className={styles.tableContainer}>
                   <table className={styles.prescriptionTable}>
                     <thead>
                       <tr>
-                        <th>Rx Number</th>
+                        <th>Prescribed Date</th>
                         <th>Medication</th>
+                        <th>Strength</th>
                         <th>Directions</th>
                         <th>Quantity</th>
                         <th>Refills</th>
                         <th>Status</th>
-                        <th>Prescribed Date</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {prescription.map((prescription) => (
+                      {patient.prescriptions.map((prescription) => (
                         <tr
                           key={prescription.rx_number}
                           className={styles.tableRow}
                           onClick={() => handleShowModal(prescription)}
                         >
-                          <td>{prescription.rx_number}</td>
-                          <td>{prescription.medication_name}</td>
+                          <td>{prescription.prescribed_date}</td>
+                          <td>{prescription.rx_item_name}</td>
+                          <td>{prescription.rx_item_strength}</td>
                           <td>{prescription.directions}</td>
                           <td>{prescription.quantity}</td>
                           <td>{prescription.refills}</td>
-                          <td>{prescription.status}</td>
-                          <td>{prescription.prescribed_date}</td>
+                          <td>{prescription.prescription_status}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
 
-                <div className={styles.newRxButton}>
-                  <button type="submit" onClick={handleNewRxClick}>
-                    New Rx
-                  </button>
-                </div>
               </section>
               {selectedPrescription && (
                 <PrescriptionModal

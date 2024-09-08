@@ -92,7 +92,6 @@
 .medicationDisplay {
   display: flex;
   flex-direction: column;
-  margin: 1rem;
 }
 
 .medicationBox {
@@ -102,6 +101,7 @@
   padding: 1rem;
   width: 30vw;
   height: 60vh;
+  max-height: 60vh;
   background-color: #ffffff;
   border-radius: 20px;
   overflow-y: auto;
