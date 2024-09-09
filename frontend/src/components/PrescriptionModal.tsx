@@ -4,16 +4,22 @@ import styles from "./PrescriptionModal.module.css";
 
 interface Prescription {
   rx_number: number;
+  prescriber_id: number;
+  prescriber_first_name: string;
+  prescriber_last_name: string;
+  prescriber_type: string;
   prescribed_date: string;
+  prescription_status: string;
   rx_item_name: string;
   rx_item_strength: string;
-  directions: string;
   quantity: number;
   refills: number;
-  prescription_status: string;
-  tech_initials: string;
+  directions: string;
   patient_id: number;
-  prescriber_id: number;
+  rx_item_id: number;
+  quantity_dispensed: number;
+  status: string;
+  tech_initials: string;
 }
 
 interface PrescriptionModalProps {
@@ -130,10 +136,10 @@ const PrescriptionModal: React.FC<PrescriptionModalProps> = ({
       </Modal.Body>
       <Modal.Footer>
         <div className={styles.buttonContainer}>
-          <button type="submit" onClick={handleSave}>
+          <button type="button" onClick={handleSave}>
             Save Changes
           </button>
-          <button type="submit" onClick={handleDelete}>
+          <button type="button" onClick={handleDelete}>
             Delete Prescription
           </button>
         </div>

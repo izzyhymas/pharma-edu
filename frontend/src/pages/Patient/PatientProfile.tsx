@@ -138,44 +138,34 @@ const PatientProfile: React.FC = () => {
     setShowPrescriptionModal(false);
   };
 
-  const handleSavePrescription = async () => {
-    if (selectedPrescription) {
-      const payload = {
-        patient_id: id, // You need to pass this if required by your backend
-        prescriber_id: selectedPrescription.prescriber_id,
-        prescribed_date: selectedPrescription.prescribed_date,
-        rx_item_id: selectedPrescription.rx_number, // Use rx_number as rx_item_id
-        directions: selectedPrescription.directions,
-        quantity: selectedPrescription.quantity,
-        quantity_dispensed: selectedPrescription.quantity_dispensed || 0, // Default to 0 if not provided
-        refills: selectedPrescription.refills,
-        status: selectedPrescription.prescription_status, // Mapping prescription_status to status
-        tech_initials: selectedPrescription.tech_initials || "",
-      };
-  
-      console.log("Payload:", payload);
-  
-      try {
-        const response = await fetch(
-          `http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`, // Use rx_number in URL
-          {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          }
-        );
-        if (response.ok) {
-          // Handle success
-          alert("Prescription updated successfully!");
-          setShowPrescriptionModal(false);
-        } else {
-          alert("Failed to update prescription.");
+  const handleSavePrescription = async (updatedPrescription: Prescription) => {
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/prescriptions/${updatedPrescription.rx_number}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedPrescription),
         }
-      } catch (error) {
-        console.error("Error updating prescription:", error);
+      );
+      if (response.ok) {
+        alert("Prescription updated successfully!");
+        // Update the patient data with the new prescription information
+        setPatient((prev) => ({
+          ...prev!,
+          prescriptions: prev!.prescriptions.map((p) =>
+            p.rx_number === updatedPrescription.rx_number
+              ? updatedPrescription
+              : p
+          ),
+        }));
+      } else {
+        alert("Failed to update prescription.");
       }
+    } catch (error) {
+      console.error("Error updating prescription:", error);
     }
   };
 
