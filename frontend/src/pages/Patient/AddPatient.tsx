@@ -145,7 +145,6 @@ const AddPatient: React.FC = () => {
                   onChange={handleChange}
                 ></input>
               </label>
-              <hr />
             </div>
           </div>
 
@@ -213,7 +212,6 @@ const AddPatient: React.FC = () => {
             <div className={styles.addPatientButton}>
               <button type="submit">Save Information</button>
             </div>
-            <hr/>
           </div>
         </div>
       </form>

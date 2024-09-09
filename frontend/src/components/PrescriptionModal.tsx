@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Modal, Form } from "react-bootstrap";
+import styles from "./PrescriptionModal.module.css";
 
 interface Prescription {
   rx_number: number;
@@ -28,9 +29,10 @@ const PrescriptionModal: React.FC<PrescriptionModalProps> = ({
   onHide,
   prescription,
   onSave,
-  onDelete
+  onDelete,
 }) => {
-  const [editedPrescription, setEditedPrescription] = useState<Prescription>(prescription);
+  const [editedPrescription, setEditedPrescription] =
+    useState<Prescription>(prescription);
 
   useEffect(() => {
     setEditedPrescription(prescription);
@@ -56,10 +58,10 @@ const PrescriptionModal: React.FC<PrescriptionModalProps> = ({
 
   return (
     <Modal show={show} onHide={onHide}>
-      <Modal.Header closeButton>
+      <Modal.Header closeButton className={styles.prescriptionHeader}>
         <Modal.Title>Edit Prescription</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className={styles.prescriptionBody}>
         <Form>
           <Form.Group>
             <Form.Label>Date Prescribed:</Form.Label>
@@ -127,15 +129,14 @@ const PrescriptionModal: React.FC<PrescriptionModalProps> = ({
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onHide}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleSave}>
-          Save Changes
-        </Button>
-        <Button variant="danger" onClick={handleDelete}>
-          Delete Prescription
-        </Button>
+        <div className={styles.buttonContainer}>
+          <button type="submit" onClick={handleSave}>
+            Save Changes
+          </button>
+          <button type="submit" onClick={handleDelete}>
+            Delete Prescription
+          </button>
+        </div>
       </Modal.Footer>
     </Modal>
   );

@@ -62,7 +62,7 @@ const MedicationProfile: React.FC = () => {
     setIsEditing(false);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
 
     setMedication((prev: any) => ({
@@ -85,7 +85,11 @@ const MedicationProfile: React.FC = () => {
           </div>
           <div className={styles.medicationProfileContainer}>
             <div className={styles.medicationInfo}>
-              <div className={`${styles.medicationInfoFields} ${isEditing ? styles.editMode : ""}`}>
+              <div
+                className={`${styles.medicationInfoFields} ${
+                  isEditing ? styles.editMode : ""
+                }`}
+              >
                 <label>
                   <p>Medication:</p>
                   <input
@@ -97,7 +101,7 @@ const MedicationProfile: React.FC = () => {
                   ></input>
                 </label>
                 <label>
-                  <p>Medication Strength:</p>
+                  <p>Strength:</p>
                   <input
                     type="text"
                     name="strength"
@@ -148,13 +152,26 @@ const MedicationProfile: React.FC = () => {
                 </label>
                 <label>
                   <p>DEA Schedule:</p>
-                  <input
-                    type="text"
-                    name="dea_schedule"
-                    value={medication.dea_schedule}
-                    onChange={handleChange}
-                    readOnly={!isEditing}
-                  ></input>
+                  {isEditing ? (
+                    <select
+                      name="dea_schedule"
+                      value={medication.dea_schedule}
+                      onChange={handleChange}
+                    >
+                      <option value="Legend">Legend</option>
+                      <option value="Schedule II">Schedule II</option>
+                      <option value="Schedule III">Schedule III</option>
+                      <option value="Schedule IV">Schedule IV</option>
+                      <option value="Schedule V">Schedule V</option>
+                    </select>
+                  ) : (
+                    <input
+                      type="text"
+                      name="dea_schedule"
+                      value={medication.dea_schedule}
+                      readOnly
+                    ></input>
+                  )}
                 </label>
                 <div className={styles.GeneralButtonContainer}>
                   <button type="button" onClick={handleEditToggle}>

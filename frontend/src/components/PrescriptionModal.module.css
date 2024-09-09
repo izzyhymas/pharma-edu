@@ -1,0 +1,26 @@
+.prescriptionHeader {
+    font-weight: 800;
+    background-color: #4d79a9;
+    color: #ffffff;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.buttonContainer button {
+  background-color: #4d79a9;
+  color: #ffffff;
+  border: none;
+  padding: 10px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}

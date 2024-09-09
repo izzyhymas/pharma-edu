@@ -15,7 +15,7 @@ interface PharmacyRoutes {
 const routes: PharmacyRoutes[] = [
   {
     name: "Home",
-    path: "/home",
+    path: "/",
     component: Home
   },
   {

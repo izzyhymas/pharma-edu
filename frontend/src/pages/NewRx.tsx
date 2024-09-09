@@ -99,9 +99,9 @@ const NewRx: React.FC = () => {
       });
 
       if (response.ok) {
-        console.log("Prescription created successfully");
+        alert("Prescription created successfully");
       } else {
-        console.log("Error creating prescription");
+        alert("Error creating prescription");
       }
     } catch (error) {
       console.error("Error:", error);

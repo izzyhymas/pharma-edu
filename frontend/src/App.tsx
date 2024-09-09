@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import PatientSearch from "./pages/Patient/PatientSearch";
 import PatientProfile from "./pages/Patient/PatientProfile";
-import Prescription from "./pages/Prescription";
 import AddPatient from "./pages/Patient/AddPatient";
 
 import PrescriberSearch from "./pages/Prescriber/PrescriberSearch";
@@ -33,7 +32,6 @@ const App: React.FC = () => {
           ))}
           <Route path="patient/profile/:id" element={<PatientProfile />} />
           <Route path="patient/search" element={<PatientSearch />} />
-          <Route path="patient/prescription" element={<Prescription />} />
           <Route path="patient/add" element={<AddPatient />} />
 
           <Route path="prescriber/search" element={<PrescriberSearch />} />

@@ -129,6 +129,7 @@ const PatientProfile: React.FC = () => {
   };
 
   const handleShowModal = (prescription: Prescription) => {
+    console.log("Selected Prescription:", prescription);
     setSelectedPrescription(prescription);
     setShowPrescriptionModal(true);
   };
@@ -140,22 +141,23 @@ const PatientProfile: React.FC = () => {
   const handleSavePrescription = async () => {
     if (selectedPrescription) {
       const payload = {
-        patient_id: selectedPrescription.patient_id,
+        patient_id: id, // You need to pass this if required by your backend
         prescriber_id: selectedPrescription.prescriber_id,
         prescribed_date: selectedPrescription.prescribed_date,
-        rx_item_id: selectedPrescription.rx_item_id,
+        rx_item_id: selectedPrescription.rx_number, // Use rx_number as rx_item_id
         directions: selectedPrescription.directions,
         quantity: selectedPrescription.quantity,
-        quantity_dispensed: selectedPrescription.quantity_dispensed,
+        quantity_dispensed: selectedPrescription.quantity_dispensed || 0, // Default to 0 if not provided
         refills: selectedPrescription.refills,
-        status: selectedPrescription.status,
-        tech_initials: selectedPrescription.tech_initials,
+        status: selectedPrescription.prescription_status, // Mapping prescription_status to status
+        tech_initials: selectedPrescription.tech_initials || "",
       };
+  
       console.log("Payload:", payload);
   
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`,
+          `http://127.0.0.1:8000/prescriptions/${selectedPrescription.rx_number}`, // Use rx_number in URL
           {
             method: "PATCH",
             headers: {
@@ -343,6 +345,7 @@ const PatientProfile: React.FC = () => {
                     Delete Patient
                   </button>
                 </div>
+                <hr></hr>
               </div>
             </div>
 
@@ -424,11 +427,11 @@ const PatientProfile: React.FC = () => {
               <section className={styles.patientPrescriptions}>
                 <header className={styles.prescriptionsHeader}>
                   <h3>Prescriptions</h3>
-                <div className={styles.newRxButton}>
-                  <button type="submit" onClick={handleNewRxClick}>
-                    New Rx
-                  </button>
-                </div>
+                  <div className={styles.newRxButton}>
+                    <button type="submit" onClick={handleNewRxClick}>
+                      New Rx
+                    </button>
+                  </div>
                 </header>
                 <div className={styles.tableContainer}>
                   <table className={styles.prescriptionTable}>
@@ -462,7 +465,6 @@ const PatientProfile: React.FC = () => {
                     </tbody>
                   </table>
                 </div>
-
               </section>
               {selectedPrescription && (
                 <PrescriptionModal

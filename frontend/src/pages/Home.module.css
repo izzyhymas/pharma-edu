@@ -1,5 +1,5 @@
 .dixieLogo {
-    padding-top: 25vh;
+    padding-top: 20vh;
     display: flex;
     justify-content: center;
 }
@@ -7,4 +7,4 @@
 .dixieLogo img {
     width: 1100px;
     height: auto;
-}
+} 

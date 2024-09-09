@@ -13,7 +13,9 @@ const AddMedication: React.FC = () => {
     dea_schedule: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -99,15 +101,6 @@ const AddMedication: React.FC = () => {
                 ></input>
               </label>
               <label>
-                <p>DEA Schedule:</p>
-                <input
-                  type="text"
-                  name="dea_schedule"
-                  value={formData.dea_schedule}
-                  onChange={handleChange}
-                ></input>
-              </label>
-              <label>
                 <p>Dosage Form:</p>
                 <input
                   type="text"
@@ -115,6 +108,20 @@ const AddMedication: React.FC = () => {
                   value={formData.dosage_form}
                   onChange={handleChange}
                 ></input>
+              </label>
+              <label>
+                <p>DEA Schedule:</p>
+                <select
+                  name="dea_schedule"
+                  value={formData.dea_schedule}
+                  onChange={handleChange}
+                >
+                  <option value="Legend">Legend</option>
+                  <option value="Schedule II">Schedule II</option>
+                  <option value="Schedule III">Schedule III</option>
+                  <option value="Schedule IV">Schedule IV</option>
+                  <option value="Schedule V">Schedule V</option>
+                </select>
               </label>
               <div className={styles.GeneralButtonContainer}>
                 <button type="submit">Save Information</button>
