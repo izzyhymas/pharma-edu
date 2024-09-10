@@ -1,5 +1,5 @@
 .prescriberProfilePage {
-  padding: 20vh 1rem;
+  padding: 12vh 0.5rem;
 }
 
 .prescriberProfileTitle h3 {
@@ -12,7 +12,6 @@
 .prescriberName h3 {
   margin: 0;
   font-weight: 800;
-  padding: 0.5rem;
 }
 
 .prescriberProfileContainer {
