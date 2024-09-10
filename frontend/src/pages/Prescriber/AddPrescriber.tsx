@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 import styles from "./AddPrescriber.module.css";
 
 const AddPrescriber: React.FC = () => {
@@ -37,9 +38,9 @@ const AddPrescriber: React.FC = () => {
       });
 
       if (response.ok) {
-        console.log("Prescriber added successfully");
+        alert("Prescriber added successfully");
       } else {
-        console.log("Error loading prescriber");
+        alert("Error loading prescriber");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -92,33 +93,33 @@ const AddPrescriber: React.FC = () => {
                   onChange={handleChange}
                 ></input>
               </label>
-              <label>
-                <p>City:</p>
-                <input
-                  type="text"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleChange}
-                ></input>
-              </label>
-              <label>
-                <p>State:</p>
-                <input
-                  type="text"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleChange}
-                ></input>
-              </label>
-              <label>
-                <p>Zipcode:</p>
-                <input
-                  type="text"
-                  name="zipcode"
-                  value={formData.zipcode}
-                  onChange={handleChange}
-                ></input>
-              </label>
+                <label>
+                  <p>City:</p>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                  ></input>
+                </label>
+                <label>
+                  <p>State:</p>
+                  <input
+                    type="text"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                  ></input>
+                </label>
+                <label>
+                  <p>Zipcode:</p>
+                  <input
+                    type="text"
+                    name="zipcode"
+                    value={formData.zipcode}
+                    onChange={handleChange}
+                  ></input>
+                </label>
               <label>
                 <p>Contact Number:</p>
                 <input

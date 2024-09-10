@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./PrescriberProfile.module.css";
 import { useEffect, useState } from "react";
 
@@ -22,6 +22,7 @@ const PrescriberProfile: React.FC = () => {
   const [prescriber, setPrescriber] = useState<Prescriber>();
   // State to track is user is in "edit" mode
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPrescriber = async () => {
@@ -92,6 +93,7 @@ const PrescriberProfile: React.FC = () => {
         );
         if (response.ok) {
           alert("Prescriber deleted successfully!");
+          navigate("/patient/search");
         } else {
           alert("Failed to update prescriber information.");
         }

@@ -36,9 +36,9 @@ const AddMedication: React.FC = () => {
       });
 
       if (response.ok) {
-        console.log("Medication added successfully");
+        alert("Medication added successfully");
       } else {
-        console.log("Error loading medication");
+        alert("Error loading medication");
       }
     } catch (error) {
       console.error("Error:", error);

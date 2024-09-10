@@ -41,9 +41,9 @@ const AddPatient: React.FC = () => {
       });
 
       if (response.ok) {
-        console.log("Patient added successfully");
+        alert("Patient added successfully");
       } else {
-        console.log("Error adding patient");
+        alert("Error adding patient");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -109,6 +109,7 @@ const AddPatient: React.FC = () => {
                   onChange={handleChange}
                 ></input>
               </label>
+              <div className={styles.smallInputFields}>
               <label>
                 <p>City:</p>
                 <input
@@ -136,6 +137,7 @@ const AddPatient: React.FC = () => {
                   onChange={handleChange}
                 ></input>
               </label>
+              </div>
               <label>
                 <p>Allergies:</p>
                 <input

@@ -1,15 +1,15 @@
 .prescriptionHeader {
-    font-weight: 800;
-    background-color: #4d79a9;
-    color: #ffffff;
+  font-weight: 800;
+  background-color: #2e3f59;
+  color: #ffffff;
 }
 
 .buttonContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .buttonContainer button {

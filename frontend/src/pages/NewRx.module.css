@@ -89,6 +89,7 @@
 .smallInputFields {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .smallInputFields label {
@@ -112,7 +113,7 @@
   color: #000000;
   border: none;
   border-radius: 10px;
-  width: 50%;
+  width: 30%;
   max-width: 25vw;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
