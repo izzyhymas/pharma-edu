@@ -287,6 +287,7 @@ const PatientProfile: React.FC = () => {
                     readOnly={!isEditing}
                   ></input>
                 </label>
+                <div className={styles.smallInputFields}>
                 <label>
                   <p>City:</p>
                   <input
@@ -317,6 +318,7 @@ const PatientProfile: React.FC = () => {
                     readOnly={!isEditing}
                   ></input>
                 </label>
+                </div>
                 <label>
                   <p>Allergies:</p>
                   <input
@@ -335,7 +337,6 @@ const PatientProfile: React.FC = () => {
                     Delete Patient
                   </button>
                 </div>
-                <hr></hr>
               </div>
             </div>
 

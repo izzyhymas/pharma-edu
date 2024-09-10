@@ -148,6 +148,8 @@ const AddPatient: React.FC = () => {
             </div>
           </div>
 
+          <div className={styles.addPatientPageSep}></div>
+
           <div className={styles.addPatientInsurance}>
             <div className={styles.patientInsurance}>
               <h3>Insurance Information</h3>

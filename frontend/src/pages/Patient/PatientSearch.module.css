@@ -1,5 +1,5 @@
 .patientPage {
-  padding: 20vh 1rem;
+  padding: 12vh 0.5rem;
 }
 
 .patientSearchTitle h3 {
@@ -131,7 +131,7 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  width: 30vw;
+  width: 32vw;
   height: 60vh;
   max-height: 60vh;
   background-color: #FFFFFF;
