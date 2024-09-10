@@ -63,7 +63,7 @@ const NewRx: React.FC = () => {
       city: patient.city,
       state: patient.state,
       zipcode: patient.zipcode,
-      allergies: patient.allergies
+      allergies: patient.allergies,
     }));
     handleClosePatientModal(); // Close the modal after selection
   };
@@ -198,33 +198,35 @@ const NewRx: React.FC = () => {
                   ></img>
                 </div>
               </label>
-              <label>
-                <p>Item Quantity:</p>
-                <input
-                  type="number"
-                  name="quantity"
-                  value={formData.quantity}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                <p>Dispensed:</p>
-                <input
-                  type="number"
-                  name="quantity_dispensed"
-                  value={formData.quantity_dispensed}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                <p>Refills:</p>
-                <input
-                  type="number"
-                  name="refills"
-                  value={formData.refills}
-                  onChange={handleChange}
-                />
-              </label>
+              <div className={styles.smallInputFields}>
+                <label>
+                  <p>Quantity:</p>
+                  <input
+                    type="number"
+                    name="quantity"
+                    value={formData.quantity}
+                    onChange={handleChange}
+                  />
+                </label>
+                <label>
+                  <p>Dispensed:</p>
+                  <input
+                    type="number"
+                    name="quantity_dispensed"
+                    value={formData.quantity_dispensed}
+                    onChange={handleChange}
+                  />
+                </label>
+                <label>
+                  <p>Refills:</p>
+                  <input
+                    type="number"
+                    name="refills"
+                    value={formData.refills}
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
               <label>
                 <p>Directions:</p>
                 <textarea
@@ -249,7 +251,6 @@ const NewRx: React.FC = () => {
                     onChange={handleChange}
                   />
                 </label>
-                <hr></hr>
               </div>
             </div>
           </div>
@@ -257,24 +258,25 @@ const NewRx: React.FC = () => {
           <div className={styles.rxPageSep}></div>
 
           <div className={styles.printLabel}>
-            <h3>Patient Information</h3>
+            <h3>Create Rx</h3>
             <hr />
             <div className={styles.displayPatientInfo}>
               <p>Name: {formData.patient_name}</p>
               <p>Phone Number: {formData.phone_number}</p>
-              <p>Address: {formData.street} {formData.city} {formData.state} {formData.zipcode}</p>
+              <p>
+                Address: {formData.street} {formData.city} {formData.state}{" "}
+                {formData.zipcode}
+              </p>
             </div>
-            <hr />
-            <h3>Prescription</h3>
-            <hr />
 
-            <div className={styles.imageBox}></div>
-              <div className={styles.labelButton}>
-                <button type="submit">Save</button>
-                <button type="button">Scan Rx</button>
-                <button type="button">Print Label</button>
-              </div>
-          <hr></hr>
+            <div className={styles.imageBox}>
+              <p>*SCANNED IMAGE*</p>
+            </div>
+            <div className={styles.labelButton}>
+              <button type="submit">Save</button>
+              <button type="button">Scan Rx</button>
+              <button type="button">Print Label</button>
+            </div>
           </div>
         </div>
       </form>

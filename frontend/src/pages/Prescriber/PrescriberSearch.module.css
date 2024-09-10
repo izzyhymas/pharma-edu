@@ -111,13 +111,13 @@
 
 .prescriberSearchSep {
   width: 3px;
+  height: auto;
   background-color: #b3b4b5;
   margin: 0;
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  height: 100%;
 }
 
 .prescriberDisplay {

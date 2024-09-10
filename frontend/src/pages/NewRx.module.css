@@ -1,5 +1,5 @@
 .newRxPage {
-  padding: 20vh 1rem;
+  padding: 12vh 0.5rem;
   min-height: 100vh;
 }
 
@@ -8,6 +8,11 @@
   font-size: 1.5rem;
   font-weight: 800;
   margin: 0;
+}
+
+.patientInfo hr, .techInitials hr, .printLabel hr {
+  margin: 0;
+  width: 100%;
 }
 
 .rxContainer {
@@ -26,7 +31,6 @@
 }
 
 .patientInfo h3 {
-  padding: 0.5rem;
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
@@ -42,8 +46,8 @@
   flex-direction: row;
   align-items: center;
   gap: 1rem;
-  margin-top: 0.88rem;
-  margin-bottom: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .patientInfo p {
@@ -56,17 +60,16 @@
 
 .printLabel hr {
   margin: 0;
-  width: 48.9vw;
+  width: 49vw;
 }
 
 .patientInfoFields input {
   background-color: #d1d3d4;
   color: #000000;
   border: none;
-  padding: 0.5rem;
   border-radius: 10px;
   width: 50%;
-  max-width: 25w;
+  max-width: 25vw;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -74,13 +77,44 @@
   background-color: #d1d3d4;
   border: none;
   color: #000000;
-  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
   width: 50%;
-  height: auto;
-  min-height: 80px;
-  max-height: 150px;
+  height: 40px;
+  min-height: 40px;
+  max-height: 55px;
+  padding: 0.5rem;
+}
+
+.smallInputFields {
+  display: flex;
+  flex-direction: row;
+}
+
+.smallInputFields label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.smallInputFields p {
+  margin: 0;
+  font-weight: 600;
+  width: 35%;
+  text-align: left;
+  font-size: large;
+}
+
+.smallInputFields input {
+  background-color: #d1d3d4;
+  color: #000000;
+  border: none;
+  border-radius: 10px;
+  width: 50%;
+  max-width: 25vw;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
 .searchImg {
@@ -90,7 +124,7 @@
 
 .searchImg input {
   width: 100%;
-  padding-right: 1rem;
+  padding-right: 0.5rem;
 }
 
 .searchImg img {
@@ -145,7 +179,6 @@
   justify-content: center;
   width: 100%;
   margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
 }
 
 .techInitials input {
@@ -162,19 +195,16 @@
 }
 
 .displayPatientInfo {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   width: 400px;
-  max-width: 500px;
-  min-height: 100px;
-  max-height: 150px;
-  height: auto;
+  height: 145px;
   border-radius: 20px;
   background-color: #d1d3d4;
   padding: 10px;
   box-sizing: border-box;
   justify-self: center;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
   box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -193,7 +223,6 @@
 }
 
 .printLabel h3 {
-  padding: 0.5rem;
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
@@ -203,10 +232,8 @@
 but height is set to auto to make it responsive to the image that will be appearing in the box. */
 .imageBox {
   margin-top: 1rem;
-  width: 100%;
-  max-width: 500px;
-  min-height: 600px;
-  height: auto;
+  height: 300px;
+  width: 400px;
   border-radius: 20px;
   background-color: #d1d3d4;
   padding: 10px;
@@ -219,7 +246,7 @@ but height is set to auto to make it responsive to the image that will be appear
 .labelButton {
   text-align: center;
   margin-bottom: 1.5rem;
-  margin-top: 1.95rem;
+  margin-top: 1.5rem;
 }
 
 .labelButton button {

@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+#set -ex
+#
+export $(grep -v '^#' ../.env | xargs)
+
+# Clear records
+psql $DATABASE_URL -f delete_records.sql
+
+# Insert
+psql $DATABASE_URL -f insert_patients.sql
+psql $DATABASE_URL -f insert_prescribers.sql
+psql $DATABASE_URL -f insert_rxitems.sql
+psql $DATABASE_URL -f insert_prescriptions.sql
+

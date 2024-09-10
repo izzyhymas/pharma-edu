@@ -120,14 +120,11 @@
 
 .patientProfileSep {
   width: 3px;
-  height: 90%;
-  align-self: stretch;
+  height: auto;
   background-color: #d3d4d5;
   margin: 0;
-  position: absolute;
   left: 50%;
-  top: 0;
-  bottom: 0;
+  align-self: stretch;
 }
 
 .insuranceAndPrescriptions {
